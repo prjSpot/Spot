@@ -1,7 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, Button, StyleSheet,  Image } from 'react-native';
+import {WithLocalSvg} from 'react-native-svg/css';
+import * as Font from "expo-font";
+import Logo from './assets/img1.svg';
+
+
+
+
+
 
 const SignUpScreen = () => {
+
   const [nickname, setNickname] = useState('');
   const [userId, setUserId] = useState('');
   const [password, setPassword] = useState('');
@@ -9,13 +18,16 @@ const SignUpScreen = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [verificationCode, setVerificationCode] = useState('');
 
+
+
   return (
     <View style={styles.container}>
+      
       <Text style={styles.logo}>Spot</Text>
-      <Image
-        source={require('./assets/img1.png')}
-        style={styles.rectangle}
-      />
+
+      <WithLocalSvg style={styles.Logo} asset={Logo}/> 
+      
+
       <Text style={styles.label}>회원가입</Text>
 
       <TextInput
@@ -56,7 +68,7 @@ const SignUpScreen = () => {
           value={phoneNumber}
           onChangeText={setPhoneNumber}
         />
-        <Button title="전송" onPress={handleSendCode} />
+        <Button title="전송" />
       </View>
 
       <View style={styles.row}>
@@ -66,10 +78,10 @@ const SignUpScreen = () => {
           value={verificationCode}
           onChangeText={setVerificationCode}
         />
-        <Button title="확인" onPress={handleVerifyCode} />
+        <Button title="확인"  />
       </View>
 
-      <Button title="다음" onPress={handleSignUp} />
+      <Button title="다음"  />
 
     </View>
   );
@@ -110,7 +122,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 10,
   },
-  rectangle: {
+  Logo: {
     width: 50,  
     height: 10,  
     alignSelf: 'center',
