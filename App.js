@@ -17,10 +17,35 @@ const SignUpScreen = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [verificationCode, setVerificationCode] = useState('');
+  const [fontsLoaded, setFontsLoaded] = useState(false);
 
+  const loadFonts = async () => {
+    await Font.loadAsync({
+      'Lobster': require('./assets/fonts/Lobster-Regular.ttf'),
+      'SCDream1': require('./assets/fonts/SCDream1.otf'),
+      'SCDream2': require('./assets/fonts/SCDream2.otf'),
+      'SCDream3': require('./assets/fonts/SCDream3.otf'),
+      'SCDream4': require('./assets/fonts/SCDream4.otf'),
+      'SCDream5': require('./assets/fonts/SCDream5.otf'),
+      'SCDream6': require('./assets/fonts/SCDream6.otf'),
+      'SCDream7': require('./assets/fonts/SCDream7.otf'),
+      'SCDream8': require('./assets/fonts/SCDream8.otf'),
+      'SCDream9': require('./assets/fonts/SCDream9.otf'),
+    });
+    setFontsLoaded(true);
+  };
+
+  useEffect(() => {
+    loadFonts();
+  }, []);
+
+  if (!fontsLoaded) {
+    return null;
+  }
 
 
   return (
+
     <View style={styles.container}>
     
         <Text style={styles.logo}>Spot</Text>
@@ -107,7 +132,7 @@ const styles = StyleSheet.create({
   },
   logo: {
     fontSize: 36,
-    fontWeight: 'bold',
+    fontFamily:'Lobster',
     color: '#6e2fad',
     textAlign: 'center',
     marginBottom: 5,
@@ -116,8 +141,9 @@ const styles = StyleSheet.create({
     
   },
   label: {
+    fontFamily: 'SCDream5',
     fontSize: 20,
-    fontWeight: 'bold',
+    
     marginBottom: 18,
     marginTop: 20,
   },
@@ -128,18 +154,21 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     marginRight: 57,
     borderRadius: 5,
+    fontFamily: 'SCDream1',
   },
   hint: {
     fontSize: 11,
     color: '#888',
     marginBottom: 18,
     marginTop:-2,
+    fontFamily:'SCDream2'
   },
   hintPass: {
     fontSize: 11,
     color: '#888',
     marginBottom: 18,
     marginTop:-2,
+    fontFamily:'SCDream2'
   },
   row: {
     flexDirection: 'row',
@@ -154,7 +183,8 @@ const styles = StyleSheet.create({
     marginRight: 58,
   },
   labelText: {
-    marginRight: 30,  // Text와 TextInput 간 간격 조정
+    fontFamily:'SCDream3',
+    marginRight: 30,  
     fontSize: 16,
     marginBottom:10,
     
@@ -174,12 +204,14 @@ const styles = StyleSheet.create({
     borderColor: '#ccc',
     padding: 5,
     borderRadius: 5,
+    fontFamily: 'SCDream1',
   },
   buttonText: {
     color: '#000000',
     fontSize: 16,
     textAlign: 'center',
     borderStyle:'solid',
+    fontFamily:'SCDream3',
   },
   nextButton: {
     backgroundColor: '#ffffff',
