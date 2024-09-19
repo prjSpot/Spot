@@ -1,19 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { View, ScrollView, Text, TextInput, StyleSheet, TouchableOpacity, Modal } from 'react-native';
-import {WithLocalSvg} from 'react-native-svg/css';
+import { WithLocalSvg } from 'react-native-svg/css';
 import * as Font from "expo-font";
-import idRadio from '../../assets/idRadio.svg';
-import line4 from '../../assets/line4.svg';
-import line5 from '../../assets/line5.svg';
-import ellipseSnsLogin from '../../assets/ellipseSnsLogin.svg';
-import eventBanner from '../../assets/eventBanner.svg';
-import ellipseSnsLoginCheck from '../../assets/ellipseSnsLoginCheck.svg';
+import idRadio from '../../assets/idRadio.svg'; 
+import line4 from '../../assets/line4.svg'; 
+import line5 from '../../assets/line5.svg'; 
+import ellipseSnsLogin from '../../assets/ellipseSnsLogin.svg'; 
+import eventBanner from '../../assets/eventBanner.svg'; 
+import ellipseSnsLoginCheck from '../../assets/ellipseSnsLoginCheck.svg'; 
 
 const LoginScreen = () => {
-  const [userId, setUserId] = useState('');
-  const [password, setPassword] = useState('');
-  const [isIdSaved, setIsIdSaved] = useState(false); 
+  const [userId, setUserId] = useState(''); // 사용자 아이디 상태
+  const [password, setPassword] = useState(''); // 비밀번호 상태
+  const [isIdSaved, setIsIdSaved] = useState(false); // 아이디 저장 여부 상태
 
+  // 아이디 저장 버튼 클릭 시 상태 변경 함수 - 아이디저장 체크박스용
   const handleIdSavePress = () => {
     setIsIdSaved(!isIdSaved);
   };
@@ -23,20 +24,20 @@ const LoginScreen = () => {
       <Text style={styles.logo}>Spot</Text>
       <TextInput
             style={[styles.inputId]}
-            placeholder="아이디 입력"
+            placeholder="아이디 입력" // 아이디 입력 텍스트
             value={userId}
-            onChangeText={setUserId}
+            onChangeText={setUserId} // 아이디 변경 시 상태 업데이트
           />
       <TextInput
             style={[styles.inputPass]}
-            placeholder="비밀번호 입력"
+            placeholder="비밀번호 입력" // 비밀번호 입력 텍스트
             value={password}
-            onChangeText={setPassword}
+            onChangeText={setPassword} // 비밀번호 변경 시 상태 업데이트
           />
 
-<TouchableOpacity onPress={handleIdSavePress}>
+      <TouchableOpacity onPress={handleIdSavePress}>
         <View style={styles.idSaveView}>
-          <WithLocalSvg style={styles.idRadio} asset={idRadio} />
+          <WithLocalSvg style={styles.idRadio} asset={idRadio} /> {/* 아이디 저장 체크 박스 아이콘 */}
           <Text style={styles.idSave}>아이디 저장</Text>
           {isIdSaved && (
             <WithLocalSvg style={styles.idSaveCheck} asset={ellipseSnsLoginCheck} />
@@ -44,16 +45,16 @@ const LoginScreen = () => {
         </View>
       </TouchableOpacity>
 
-        <TouchableOpacity>
-          <Text style={styles.loginBtn}>로그인</Text>
-        </TouchableOpacity>
+      <TouchableOpacity>
+        <Text style={styles.loginBtn}>로그인</Text> 
+      </TouchableOpacity>
 
-        <View style={styles.idForgotView}>
+      <View style={styles.idForgotView}>
         <TouchableOpacity>
           <Text style={styles.forgot}>아이디 찾기</Text>
         </TouchableOpacity>
 
-        <WithLocalSvg style={styles.line4} asset={line4}/> 
+        <WithLocalSvg style={styles.line4} asset={line4}/>
 
         <TouchableOpacity>
           <Text style={styles.forgot}>비밀번호 찾기</Text>
@@ -62,35 +63,35 @@ const LoginScreen = () => {
         <WithLocalSvg style={styles.line4} asset={line4}/> 
 
         <TouchableOpacity>
-          <Text style={styles.forgot}>회원 가입</Text>
+          <Text style={styles.forgot}>회원 가입</Text> 
         </TouchableOpacity>
-        </View>
+      </View>
 
-        <View style={styles.orAlign}>
+      <View style={styles.orAlign}>
         <WithLocalSvg style={styles.line5} asset={line5}/> 
         <Text style={styles.orText}>또는</Text>
         <WithLocalSvg style={styles.line6} asset={line5}/> 
-        </View>
+      </View>
 
-        <Text style={styles.snsLoginText}>SNS 로그인</Text>
+      <Text style={styles.snsLoginText}>SNS 로그인</Text> 
 
-        <View style={styles.snsAlignImg}>
+      <View style={styles.snsAlignImg}>
+        <WithLocalSvg style={styles.ellipseSnsLogin} asset={ellipseSnsLogin}/> {/* SNS 로그인 아이콘 */}
         <WithLocalSvg style={styles.ellipseSnsLogin} asset={ellipseSnsLogin}/> 
         <WithLocalSvg style={styles.ellipseSnsLogin} asset={ellipseSnsLogin}/> 
-        <WithLocalSvg style={styles.ellipseSnsLogin} asset={ellipseSnsLogin}/> 
-        </View>
-        <View style={styles.snsAlignText}>
-        <Text style={styles.snsLoginText2}>네이버</Text>
-        <Text style={styles.snsLoginText2}>카카오</Text>
-        <Text style={styles.snsLoginText2}>구글</Text>
-        </View>
+      </View>
 
-        <WithLocalSvg style={styles.eventBanner} asset={eventBanner}/> 
+      <View style={styles.snsAlignText}>
+        <Text style={styles.snsLoginText2}>네이버</Text> 
+        <Text style={styles.snsLoginText2}>카카오</Text> 
+        <Text style={styles.snsLoginText2}>구글</Text> 
+      </View>
+
+      <WithLocalSvg style={styles.eventBanner} asset={eventBanner}/>
     </View>
-    
-    
   );
 };
+
 const styles = StyleSheet.create({
   View: {
     margin: 0,
