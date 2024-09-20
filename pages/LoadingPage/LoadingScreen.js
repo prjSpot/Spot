@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     width: 153,
     height: 153,  
     alignSelf: 'center',
-    marginTop: 343,
+    marginTop: '75%',
   },
   logo: {
     fontSize: 48,
