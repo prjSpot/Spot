@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, ScrollView, Text, TextInput, StyleSheet, TouchableOpacity, Modal } from 'react-native';
+import { View, ScrollView, Text, TextInput, StyleSheet, TouchableOpacity, Modal, Dimensions } from 'react-native';
 import {WithLocalSvg} from 'react-native-svg/css';
 import * as Font from "expo-font";
 import Logo from './assets/img1.svg';
@@ -8,7 +8,11 @@ import CheckFalse from "./assets/checkboxfalse.svg";
 import CheckTrue from "./assets/checkboxtrue.svg";
 import { useNavigation } from '@react-navigation/native';
 
+const { width, height } = Dimensions.get('window');
 
+// vw, vh 계산 (비율로 크기 설정)
+const vw = width / 100;
+const vh = height / 100;
 
 
 
@@ -23,7 +27,8 @@ const SignUpScreen = () => {
   // 조건 다 통과되면 동의 모달 창 띄우기
   // 모달 창 위에서 필수 동의 사항들 체크 되어있으면 다음 버튼 눌렀을 때 로그인 화면으로 이동
   // 네비게이션 객체 가져오기
-
+  // 화면 크기를 가져오는 API
+  
   const navigation = useNavigation(); 
   const [nickname, setNickname] = useState('');
   const [userId, setUserId] = useState('');
@@ -180,7 +185,7 @@ const SignUpScreen = () => {
               <View style={[ styles.row, {justifyContent: 'space-between'} ]}>
                 <Text style={styles.modalTitle} allowFontScaling={false}>약관 전체동의</Text>
                 <TouchableOpacity onPress={handleAgreeAll}>
-                  <WithLocalSvg asset={CheckBtn(isAgreeAll)} style={[ styles.checkAgree, {marginBottom: 20,}]}/>
+                  <WithLocalSvg asset={CheckBtn(isAgreeAll)} style={[ styles.checkAgree, {marginBottom: 2.8 * vh,}]}/>
                 </TouchableOpacity>
               </View>
               <WithLocalSvg 
@@ -196,7 +201,7 @@ const SignUpScreen = () => {
                     </Text>
                   </View>
                   <TouchableOpacity onPress={handleAgreeTerms}>
-                    <WithLocalSvg asset={CheckBtn(isAgreeTerms)} style={[ styles.checkAgree, {marginBottom: 30,}]}/>
+                    <WithLocalSvg asset={CheckBtn(isAgreeTerms)} style={[ styles.checkAgree, {marginBottom: 4.2 * vh,}]}/>
                   </TouchableOpacity>
                 </View>
                 <View style={[ styles.row, {justifyContent: 'space-between'} ]}>
@@ -207,7 +212,7 @@ const SignUpScreen = () => {
                     </Text>
                   </View>
                   <TouchableOpacity onPress={handleAgreePrivacy}>
-                    <WithLocalSvg asset={CheckBtn(isAgreePrivacy)} style={[ styles.checkAgree, {marginBottom: 30,}]}/>
+                    <WithLocalSvg asset={CheckBtn(isAgreePrivacy)} style={[ styles.checkAgree, {marginBottom: 4.2 * vh,}]}/>
                   </TouchableOpacity>
                 </View>
                 <View style={[ styles.row, {justifyContent: 'space-between'} ]}>
@@ -218,10 +223,10 @@ const SignUpScreen = () => {
                     </Text>
                   </View>
                   <TouchableOpacity onPress={handleAgreeLocation}>
-                    <WithLocalSvg asset={CheckBtn(isAgreeLocation)} style={[ styles.checkAgree, {marginBottom: 30,}]}/>
+                    <WithLocalSvg asset={CheckBtn(isAgreeLocation)} style={[ styles.checkAgree, {marginBottom: 4.2 * vh,}]}/>
                   </TouchableOpacity>
                 </View>
-                <TouchableOpacity style={[styles.nextButton, {marginTop:10}]} onPress={() => navigation.navigate('ForgotPass')}>
+                <TouchableOpacity style={[styles.nextButton, {marginTop:1.4 * vh}]} onPress={() => navigation.navigate('ForgotPass')}>
                   <Text style={styles.buttonText} allowFontScaling={false}>다음</Text>
                 </TouchableOpacity>
               </ScrollView>
@@ -250,38 +255,38 @@ const styles = StyleSheet.create({
     
   },
   logo: {
-    fontSize: 36,
+    fontSize: 6 * vh,
     fontFamily:'Lobster',
     color: '#8236E2',
-    marginTop: "16%",
+    marginTop: 4 * vh,
     
   },
   label: {
     fontFamily: 'SCDream5',
-    fontSize: 20,
-    marginBottom: "6%",
-    marginTop: "8%",
+    fontSize: 2.8 * vh,
+    marginBottom: 2.5 * vh,
+    marginTop: 3 * vh,
   },
   input: {
     borderWidth: 1,
     borderColor: '#ccc',
-    padding: "2.5%",
+    padding: 0.8 * vh,
     width:"100%",
     borderRadius: 5,
     backgroundColor: '#E6E9F3',
     color: 'black',
   },
   hint: {
-    fontSize: 11,
+    fontSize: 1.5 * vh,
     color: '#888',
-    marginBottom: "5%",
+    marginBottom: 2 * vh,
     fontFamily:'SCDream2',
-    marginLeft: "21%",
+    marginLeft: 16.5 * vw,
   },
   hintPass: {
-    fontSize: 11,
+    fontSize: 1.5 * vh,
     color: '#888',
-    marginBottom: "5%",
+    marginBottom: 2 * vh,
     fontFamily:'SCDream2',
   
   },
@@ -291,46 +296,46 @@ const styles = StyleSheet.create({
   },
   Logoimg: {
     alignSelf: 'center',
-    marginBottom: "6%",
+    marginBottom: 2.5 * vh,
   },
   labelText: {
     fontFamily:'SCDream3',
     fontSize: 16,
-    marginRight: '5%',
+    marginRight: 3 * vw,
   },
   button: {
     backgroundColor: '#ffffff',
-    paddingVertical: "4.4%",
-    paddingHorizontal: "5%",
+    paddingVertical: 1.6 * vh,
+    paddingHorizontal: 3.5 * vw, 
     borderRadius: 5,
     borderStyle:'solid',
     borderWidth: 0.5,
-    marginBottom: "7%",
-    marginTop:"5%",
+    marginBottom: 2.5 * vh,
+    marginTop:1.8 * vh,
   },
   inputTel: {
     borderWidth: 1,
     borderColor: '#ccc',
     backgroundColor: '#E6E9F3',
-    padding: "2.5%",
+    padding: 0.8 * vh,
     borderRadius: 5,
-    marginBottom: "7%",
-    marginRight: '5%',
-    marginTop:"5%",
+    marginBottom: 2.5 * vh,
+    marginRight: 3.5 * vw,
+    marginTop: 1.7 * vh,
   },
   buttonText: {
-    fontSize: 16,
+    fontSize: 2.24 * vh,
     textAlign: 'center',
     borderStyle:'solid',
     fontFamily:'SCDream3',
   },
   nextButton: {
     backgroundColor: '#ffffff',
-    paddingVertical: "4.4%",
+    paddingVertical: 1.6 * vh,
     borderRadius: 5,
     borderStyle:'solid',
     borderWidth: 0.5,
-    marginTop: "7.5%",
+    marginTop: 2.5 * vh,
   },
   modalContainer: {
     flex: 1,
@@ -341,34 +346,34 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
-    paddingTop: 30,
+    paddingTop: 4.2 * vh,
     height: '50%',
     alignItems: 'center',
   },
   modalTitle: {
-    fontSize: 18,
+    fontSize: 2.52 * vh,
     fontFamily: 'SCDream6',
     color: '#8236E2',
-    marginBottom: 20,
+    marginBottom: 2.8 * vh,
   },
   agreeRequired: {
     color:'#8236E2', 
     fontFamily: 'SCDream5', 
-    marginRight: 10, 
-    marginBottom:30,
+    marginRight: 2.8 * vw, 
+    marginBottom: 4.2 * vh,
   },
   modalText: {
-    fontSize: 16,
+    fontSize: 2 * vh,
     fontFamily: 'SCDream3',
-    marginBottom: 30,
+    marginBottom: 4.2 * vh,
   },
   agreeLine: {
     alignSelf: 'center',
-    marginBottom: 30,
+    marginBottom: 4.2 * vh,
     width: 300,
   },
   checkAgree: {
-    marginLeft: 10,
+    marginLeft: 3.57 * vw,
   }
 });
 
