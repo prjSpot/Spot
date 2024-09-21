@@ -89,27 +89,27 @@ const SignUpScreen = () => {
 
   return (
 
-    <View style={styles.container}>
+    <View style={styles.container} >
     
-        <Text style={styles.logo}>Spot</Text>
+        <Text style={styles.logo} allowFontScaling={false}>Spot</Text>
         <WithLocalSvg style={styles.Logoimg} asset={Logo}/> 
 
       <ScrollView style={styles.signup}>
-        <Text style={styles.label}>회원가입</Text>
+        <Text style={styles.label} allowFontScaling={false}>회원가입</Text>
       
 
 
-        <View style={[styles.row, { marginBottom: 10 }]}>
-          <Text style={styles.labelText}>닉네임</Text>
+        <View style={[styles.row, { marginBottom: "5%" }]}>
+          <Text style={styles.labelText} allowFontScaling={false}>닉네임</Text>
           <TextInput
-            style={[styles.input, { flex: 1 , fontFamily: 'SCDream3' }]}
+            style={[styles.input, {  flex : 1 ,fontFamily: 'SCDream3' }]}
             placeholder="닉네임"
             value={nickname}
             onChangeText={setNickname}
           />
         </View>
         <View style={styles.row}>
-          <Text style={styles.labelText}>아이디</Text>
+          <Text style={styles.labelText} allowFontScaling={false}>아이디</Text>
           <TextInput
             style={[styles.input, { flex: 1 ,fontFamily: 'SCDream3'}]}
             placeholder="아이디"
@@ -117,10 +117,10 @@ const SignUpScreen = () => {
             onChangeText={setUserId}
           />
         </View>
-        <Text style={styles.hint}>아이디 중복여부 알림창</Text>
+        <Text style={styles.hint} allowFontScaling={false}>아이디 중복여부 알림창</Text>
 
         <TextInput
-          style={[styles.input, { marginBottom: 20 , fontFamily: 'SCDream3'}]}
+          style={[styles.input, { marginBottom: "5%" , fontFamily: 'SCDream3'}]}
           placeholder="비밀번호"
           secureTextEntry
           value={password}
@@ -134,9 +134,9 @@ const SignUpScreen = () => {
           value={confirmPassword}
           onChangeText={setConfirmPassword}
         />
-        <Text style={styles.hintPass}>비밀번호 일치 Label</Text>
+        <Text style={styles.hintPass} allowFontScaling={false}>비밀번호 일치 Label</Text>
 
-        <Text style={styles.labelText}>전화번호</Text>
+        <Text style={styles.labelText} allowFontScaling={false}>전화번호</Text>
         <View style={styles.row}>
           <TextInput
             style={[styles.inputTel, { flex: 1 , fontFamily: 'SCDream3'}]}
@@ -149,7 +149,7 @@ const SignUpScreen = () => {
           </TouchableOpacity>
         </View>
 
-        <Text style={styles.labelText}>인증번호</Text>
+        <Text style={styles.labelText} allowFontScaling={false}>인증번호</Text>
         <View style={styles.row}>
           <TextInput
             style={[styles.inputTel, { flex: 1 , fontFamily: 'SCDream3'}]}
@@ -178,7 +178,7 @@ const SignUpScreen = () => {
           <View style={styles.modalContent}>
             <View style={[{ width: '75%'}]}>
               <View style={[ styles.row, {justifyContent: 'space-between'} ]}>
-                <Text style={styles.modalTitle}>약관 전체동의</Text>
+                <Text style={styles.modalTitle} allowFontScaling={false}>약관 전체동의</Text>
                 <TouchableOpacity onPress={handleAgreeAll}>
                   <WithLocalSvg asset={CheckBtn(isAgreeAll)} style={[ styles.checkAgree, {marginBottom: 20,}]}/>
                 </TouchableOpacity>
@@ -190,8 +190,8 @@ const SignUpScreen = () => {
               <ScrollView>
                 <View style={[ styles.row, {justifyContent: 'space-between'} ]}>
                   <View style={[{flexDirection: 'row', alignItems: 'center'}]}>
-                    <Text style={styles.agreeRequired}>필수</Text>
-                    <Text style={styles.modalText}>
+                    <Text style={styles.agreeRequired} allowFontScaling={false}>필수</Text>
+                    <Text style={styles.modalText} allowFontScaling={false}>
                       이용약관 동의
                     </Text>
                   </View>
@@ -201,8 +201,8 @@ const SignUpScreen = () => {
                 </View>
                 <View style={[ styles.row, {justifyContent: 'space-between'} ]}>
                   <View style={[{flexDirection: 'row'}]}>
-                    <Text style={styles.agreeRequired}>필수</Text>
-                    <Text style={styles.modalText}>
+                    <Text style={styles.agreeRequired} allowFontScaling={false}>필수</Text>
+                    <Text style={styles.modalText} allowFontScaling={false}>
                       개인정보 수집 및 이용 동의
                     </Text>
                   </View>
@@ -212,8 +212,8 @@ const SignUpScreen = () => {
                 </View>
                 <View style={[ styles.row, {justifyContent: 'space-between'} ]}>
                   <View style={[{flexDirection: 'row'}]}>
-                    <Text style={[styles.agreeRequired, {color: 'black'}]}>선택</Text>
-                    <Text style={styles.modalText}>
+                    <Text style={[styles.agreeRequired, {color: 'black'}, ]} allowFontScaling={false}>선택</Text>
+                    <Text style={styles.modalText} allowFontScaling={false}>
                       위치 정보 서비스 이용약관 동의
                     </Text>
                   </View>
@@ -222,7 +222,7 @@ const SignUpScreen = () => {
                   </TouchableOpacity>
                 </View>
                 <TouchableOpacity style={[styles.nextButton, {marginTop:10}]} onPress={() => navigation.navigate('ForgotPass')}>
-                  <Text style={styles.buttonText}>다음</Text>
+                  <Text style={styles.buttonText} allowFontScaling={false}>다음</Text>
                 </TouchableOpacity>
               </ScrollView>
             </View>
@@ -236,31 +236,37 @@ const SignUpScreen = () => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    height: "100%",
     backgroundColor: '#fff',
     alignItems: "center",
+    borderStyle:'solid',
+    borderWidth: 1,
+    borderColor:"#ff0000"
   },
   signup: {
-    width: "75%"
+    width: "75%",
+    borderStyle:'solid',
+    borderWidth: 0.5,
+    
   },
   logo: {
     fontSize: 36,
     fontFamily:'Lobster',
     color: '#8236E2',
-    marginBottom: 0,
     marginTop: "16%",
+    
   },
   label: {
     fontFamily: 'SCDream5',
     fontSize: 20,
-    marginBottom: 18,
-    marginTop: 20,
+    marginBottom: "6%",
+    marginTop: "8%",
   },
   input: {
     borderWidth: 1,
     borderColor: '#ccc',
-    padding: 5,
-    marginBottom: 10,
+    padding: "2.5%",
+    width:"100%",
     borderRadius: 5,
     backgroundColor: '#E6E9F3',
     color: 'black',
@@ -268,48 +274,49 @@ const styles = StyleSheet.create({
   hint: {
     fontSize: 11,
     color: '#888',
-    marginBottom: 18,
-    fontFamily:'SCDream2'
+    marginBottom: "5%",
+    fontFamily:'SCDream2',
+    marginLeft: "21%",
   },
   hintPass: {
     fontSize: 11,
     color: '#888',
-    marginBottom: 18,
-    fontFamily:'SCDream2'
+    marginBottom: "5%",
+    fontFamily:'SCDream2',
+  
   },
   row: {
     flexDirection: 'row',
     alignItems: 'center',
   },
   Logoimg: {
-    width: 100,
-    height: 10,  
     alignSelf: 'center',
-    marginBottom: 20,
+    marginBottom: "6%",
   },
   labelText: {
     fontFamily:'SCDream3',
     fontSize: 16,
-    marginBottom:10,
-    marginRight: '7%',
+    marginRight: '5%',
   },
   button: {
     backgroundColor: '#ffffff',
-    paddingVertical: 10,
-    paddingHorizontal: 15,
+    paddingVertical: "4.4%",
+    paddingHorizontal: "5%",
     borderRadius: 5,
     borderStyle:'solid',
     borderWidth: 0.5,
-    marginBottom: 20,
+    marginBottom: "7%",
+    marginTop:"5%",
   },
   inputTel: {
     borderWidth: 1,
     borderColor: '#ccc',
     backgroundColor: '#E6E9F3',
-    padding: 5,
+    padding: "2.5%",
     borderRadius: 5,
-    marginBottom: 20,
-    marginRight: '7%',
+    marginBottom: "7%",
+    marginRight: '5%',
+    marginTop:"5%",
   },
   buttonText: {
     fontSize: 16,
@@ -319,12 +326,11 @@ const styles = StyleSheet.create({
   },
   nextButton: {
     backgroundColor: '#ffffff',
-    paddingVertical: 10,
-    paddingHorizontal: 20,
+    paddingVertical: "4.4%",
     borderRadius: 5,
     borderStyle:'solid',
     borderWidth: 0.5,
-    marginTop: 20,
+    marginTop: "7.5%",
   },
   modalContainer: {
     flex: 1,
