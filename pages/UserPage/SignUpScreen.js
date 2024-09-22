@@ -83,10 +83,10 @@ const SignUpScreen = () => {
       
 
 
-        <View style={[styles.row]}>
+        <View style={styles.row}>
           <Text style={styles.labelText}>닉네임</Text>
           <TextInput
-            style={[styles.input, { flex: 1 , fontFamily: 'SCDream3' }]}
+            style={styles.input}
             placeholder="닉네임"
             value={nickname}
             onChangeText={setNickname}
@@ -95,7 +95,7 @@ const SignUpScreen = () => {
         <View style={styles.row}>
           <Text style={styles.labelText}>아이디</Text>
           <TextInput
-            style={[styles.input, { flex: 1 ,fontFamily: 'SCDream3'}]}
+            style={styles.input}
             placeholder="아이디"
             value={userId}
             onChangeText={setUserId}
@@ -105,7 +105,7 @@ const SignUpScreen = () => {
 
         <View style={styles.row}>
         <TextInput
-          style={[styles.input, { flex: 1, fontFamily: 'SCDream3'}]}
+          style={styles.input}
           placeholder="비밀번호"
           secureTextEntry
           value={password}
@@ -115,7 +115,7 @@ const SignUpScreen = () => {
 
         <View style={styles.row}>
         <TextInput
-          style={[styles.input, { flex: 1, fontFamily: 'SCDream3'}]}
+          style={styles.input}
           placeholder="비밀번호 확인"
           secureTextEntry
           value={confirmPassword}
@@ -127,20 +127,20 @@ const SignUpScreen = () => {
         <Text style={styles.labelText}>전화번호</Text>
         <View style={styles.row}>
           <TextInput
-            style={[styles.inputTel, { flex: 1 , fontFamily: 'SCDream3'}]}
+            style={styles.inputTel}
             placeholder="전화번호"
             value={phoneNumber}
             onChangeText={setPhoneNumber}
           />
-          <TouchableOpacity style={[styles.button]}>
-            <Text style={[styles.buttonText]}>전송</Text>
+          <TouchableOpacity style={styles.button}>
+            <Text style={styles.buttonText}>전송</Text>
           </TouchableOpacity>
         </View>
 
         <Text style={styles.labelText}>인증번호</Text>
         <View style={styles.row}>
           <TextInput
-            style={[styles.inputTel, { flex: 1 , fontFamily: 'SCDream3'}]}
+            style={styles.inputTel}
             placeholder="인증번호"
             value={verificationCode}
             onChangeText={setVerificationCode}
@@ -240,37 +240,41 @@ const normalize = (size, based = 'width') => {
 };
 
 const styles = StyleSheet.create({
+  agreeLine: {
+    alignSelf: 'center',
+    marginBottom: normalize(30, 'height'),
+    width: normalize(300, 'width'),
+  },
+  agreeRequired: {
+    color: '#8236E2',
+    fontFamily: 'SCDream5',
+    marginRight: normalize(10, 'width'),
+    marginBottom: normalize(30, 'height'),
+  },
+  button: {
+    backgroundColor: '#ffffff',
+    paddingVertical: normalize(10, 'height'),
+    paddingHorizontal: normalize(15, 'width'),
+    borderRadius: normalize(5, 'width'),
+    borderStyle: 'solid',
+    borderWidth: normalize(0.5, 'width'),
+    height: normalize(40, 'height'),
+    justifyContent: 'center', 
+    alignItems: 'center', 
+  },
+  buttonText: {
+    fontSize: normalize(16, 'height'),
+    textAlign: 'center',
+    borderStyle: 'solid',
+    fontFamily: 'SCDream3',
+  },
+  checkAgree: {
+    marginLeft: normalize(10, 'width'),
+  },
   container: {
     flex: 1,
     backgroundColor: '#fff',
     alignItems: "center",
-  },
-  signup: {
-    width: "75%",
-  },
-  logo: {
-    fontSize: normalize(36, 'height'),
-    fontFamily: 'Lobster',
-    color: '#8236E2',
-    marginBottom: normalize(0, 'height'),
-    marginTop: normalize(16, 'height') + '%',
-  },
-  label: {
-    fontFamily: 'SCDream5',
-    fontSize: normalize(20, 'height'),
-    marginBottom: normalize(18, 'height'),
-    marginTop: normalize(20, 'height'),
-  },
-  input: {
-    borderWidth: 1,
-    borderColor: '#ccc',
-    padding: normalize(5, 'width'),
-    marginBottom: normalize(20, 'height'),
-    borderRadius: normalize(5, 'width'),
-    backgroundColor: '#E6E9F3',
-    color: 'black',
-    width: "auto",
-    height: "85%",
   },
   hint: {
     fontSize: normalize(11, 'height'),
@@ -284,33 +288,18 @@ const styles = StyleSheet.create({
     marginBottom: normalize(18, 'height'),
     fontFamily: 'SCDream2',
   },
-  row: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  Logoimg: {
-    width: normalize(100, 'width'),
-    height: normalize(10, 'height'),
-    alignSelf: 'center',
+  input: {
+    borderWidth: 1,
+    borderColor: '#ccc',
+    padding: normalize(5, 'width'),
     marginBottom: normalize(20, 'height'),
-  },
-  labelText: {
-    fontFamily: 'SCDream3',
-    fontSize: normalize(16, 'height'),
-    marginBottom: normalize(10, 'height'),
-    marginRight: '7%',
-    marginTop: normalize(10, 'height'),
-  },
-  button: {
-    backgroundColor: '#ffffff',
-    paddingVertical: normalize(10, 'height'),
-    paddingHorizontal: normalize(15, 'width'),
     borderRadius: normalize(5, 'width'),
-    borderStyle: 'solid',
-    borderWidth: normalize(0.5, 'width'),
-    height: normalize(40, 'height'),
-    justifyContent: 'center', 
-    alignItems: 'center', 
+    backgroundColor: '#E6E9F3',
+    color: 'black',
+    width: "auto",
+    height: "85%",
+    fontFamily: 'SCDream3',
+    flex: 1,
   },
   inputTel: {
     borderWidth: 1,
@@ -319,15 +308,60 @@ const styles = StyleSheet.create({
     padding: normalize(5, 'width'),
     borderRadius: normalize(5, 'width'),
     // marginBottom: normalize(20, 'height'),
-    marginRight: '7%',
+    marginRight: normalize(7, 'width') + '%',
     height: normalize(40, 'height'),
     flex: 1,
-  },
-  buttonText: {
-    fontSize: normalize(16, 'height'),
-    textAlign: 'center',
-    borderStyle: 'solid',
     fontFamily: 'SCDream3',
+  },
+  label: {
+    fontFamily: 'SCDream5',
+    fontSize: normalize(20, 'height'),
+    marginBottom: normalize(18, 'height'),
+    marginTop: normalize(20, 'height'),
+  },
+  labelText: {
+    fontFamily: 'SCDream3',
+    fontSize: normalize(16, 'height'),
+    marginBottom: normalize(10, 'height'),
+    marginRight: normalize(7, 'width') + '%',
+    marginTop: normalize(10, 'height'),
+  },
+  logo: {
+    fontSize: normalize(36, 'height'),
+    fontFamily: 'Lobster',
+    color: '#8236E2',
+    marginBottom: normalize(0, 'height'),
+    marginTop: normalize(16, 'height') + '%',
+  },
+  Logoimg: {
+    width: normalize(100, 'width'),
+    height: normalize(10, 'height'),
+    alignSelf: 'center',
+    marginBottom: normalize(20, 'height'),
+  },
+  modalContainer: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
+  modalContent: {
+    backgroundColor: '#fff',
+    borderTopLeftRadius: normalize(20, 'width'),
+    borderTopRightRadius: normalize(20, 'width'),
+    paddingTop: normalize(30, 'height'),
+    height: '50%',
+    alignItems: 'center',
+  },
+  modalText: {
+    fontSize: normalize(16, 'height'),
+    fontFamily: 'SCDream3',
+    marginBottom: normalize(30, 'height'),
+  },
+  modalTitle: {
+    fontSize: normalize(18, 'height'),
+    fontFamily: 'SCDream6',
+    color: '#8236E2',
+    marginBottom: normalize(20, 'height'),
   },
   nextButton: {
     backgroundColor: '#ffffff',
@@ -343,45 +377,15 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontFamily: 'SCDream3',
   },
-  modalContainer: {
-    flex: 1,
-    justifyContent: 'flex-end',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-  },
-  modalContent: {
-    backgroundColor: '#fff',
-    borderTopLeftRadius: normalize(20, 'width'),
-    borderTopRightRadius: normalize(20, 'width'),
-    paddingTop: normalize(30, 'height'),
-    height: '50%',
+  row: {
+    flexDirection: 'row',
     alignItems: 'center',
   },
-  modalTitle: {
-    fontSize: normalize(18, 'height'),
-    fontFamily: 'SCDream6',
-    color: '#8236E2',
-    marginBottom: normalize(20, 'height'),
-  },
-  agreeRequired: {
-    color: '#8236E2',
-    fontFamily: 'SCDream5',
-    marginRight: normalize(10, 'width'),
-    marginBottom: normalize(30, 'height'),
-  },
-  modalText: {
-    fontSize: normalize(16, 'height'),
-    fontFamily: 'SCDream3',
-    marginBottom: normalize(30, 'height'),
-  },
-  agreeLine: {
-    alignSelf: 'center',
-    marginBottom: normalize(30, 'height'),
-    width: normalize(300, 'width'),
-  },
-  checkAgree: {
-    marginLeft: normalize(10, 'width'),
+  signup: {
+    width: "75%",
   },
 });
+
 
 
 export default SignUpScreen;
