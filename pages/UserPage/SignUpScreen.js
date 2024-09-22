@@ -7,20 +7,7 @@ import AgreeLine from "../../assets/agreeline.svg";
 import CheckFalse from "../../assets/checkboxfalse.svg";
 import CheckTrue from "../../assets/checkboxtrue.svg";
 
-
-
-
-
 const SignUpScreen = () => {
-
-  // 할 게 너무 많아요 ㅋㅋ 이게 맞나?
-  // 아이디 입력할 때마다 하단 중복여부 알림창에 사용가능 or 불가능 표기
-  // 비밀번호 두개 같은 지 확인 (일치 label)
-  // 전화번호 전송버튼 작동 -> 랜덤 숫자 6자리 생성 후 문자 혹은 카톡 전달
-  // 인증번호 생성된 랜덤번호와 일치하는지 확인
-  // 위 조건들 하나라도 만족 못하면 다음버튼 눌렀을 때 ㅁㅁ을 다시 확인해주세요
-  // 조건 다 통과되면 동의 모달 창 띄우기
-  // 모달 창 위에서 필수 동의 사항들 체크 되어있으면 다음 버튼 눌렀을 때 로그인 화면으로 이동
 
   const [nickname, setNickname] = useState('');
   const [userId, setUserId] = useState('');
@@ -278,7 +265,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#ccc',
     padding: normalize(5, 'width'),
-    marginBottom: normalize(10, 'height'),
+    marginBottom: normalize(20, 'height'),
     borderRadius: normalize(5, 'width'),
     backgroundColor: '#E6E9F3',
     color: 'black',
@@ -312,6 +299,7 @@ const styles = StyleSheet.create({
     fontSize: normalize(16, 'height'),
     marginBottom: normalize(10, 'height'),
     marginRight: '7%',
+    marginTop: normalize(10, 'height'),
   },
   button: {
     backgroundColor: '#ffffff',
@@ -320,7 +308,9 @@ const styles = StyleSheet.create({
     borderRadius: normalize(5, 'width'),
     borderStyle: 'solid',
     borderWidth: normalize(0.5, 'width'),
-    marginBottom: normalize(20, 'height'),
+    height: normalize(40, 'height'),
+    justifyContent: 'center', 
+    alignItems: 'center', 
   },
   inputTel: {
     borderWidth: 1,
@@ -328,10 +318,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#E6E9F3',
     padding: normalize(5, 'width'),
     borderRadius: normalize(5, 'width'),
-    marginBottom: normalize(20, 'height'),
+    // marginBottom: normalize(20, 'height'),
     marginRight: '7%',
-    width: "auto",
-    height: "85%",
+    height: normalize(40, 'height'),
+    flex: 1,
   },
   buttonText: {
     fontSize: normalize(16, 'height'),
@@ -347,6 +337,11 @@ const styles = StyleSheet.create({
     borderStyle: 'solid',
     borderWidth: normalize(0.5, 'width'),
     marginTop: normalize(20, 'height'),
+  },
+  nextButtonText: {
+    fontSize: normalize(16, 'height'),
+    textAlign: 'center',
+    fontFamily: 'SCDream3',
   },
   modalContainer: {
     flex: 1,
