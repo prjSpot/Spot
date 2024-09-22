@@ -1,9 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet,TextInput ,ScrollView, TouchableOpacity} from 'react-native';
+import { View, Text, StyleSheet,TextInput ,ScrollView, TouchableOpacity, Dimensions} from 'react-native';
 import {WithLocalSvg} from 'react-native-svg/css';
 import * as Font from "expo-font";
 import Logo from './assets/img1.svg';
 import { useNavigation } from '@react-navigation/native';
+
+
+
+const { width, height } = Dimensions.get('window');
+
+// vw, vh 계산 (비율로 크기 설정)
+const vw = width / 100;
+const vh = height / 100;
+
 const ResetPassScreen = () => {
 
 
@@ -35,12 +44,12 @@ return null;
 }
   return (
     <View style={styles.container}>
-      <Text style={styles.logo}>Spot</Text>
+      <Text style={styles.logo} allowFontScaling={false}>Spot</Text>
       <WithLocalSvg style={styles.Logoimg} asset={Logo}/> 
 
-      <ScrollView style = {styles.forgotPass}>
-      <Text style={styles.labelText}>새 비밀번호</Text>
-      <View style={[styles.row, { marginBottom: 10 }]}>
+      <ScrollView style = {styles.resetPass}>
+      <Text style={styles.labelText} allowFontScaling={false}>새 비밀번호</Text>
+      <View style={[styles.row, { marginBottom: 2 * vh }]}>
           <TextInput
             style={[styles.input, { flex: 1 , fontFamily: 'SCDream3' }]}
             placeholder="비밀번호"
@@ -48,8 +57,8 @@ return null;
             onChangeText={setNewPass}
           />
         </View>
-        <Text style={styles.labelText}>새 비밀번호 확인</Text>
-      <View style={[styles.row, { marginBottom: 10 }]}>
+        <Text style={styles.labelText} allowFontScaling={false}>새 비밀번호 확인</Text>
+      <View style={[styles.row, { marginBottom: 2 * vh }]}>
           <TextInput
             style={[styles.input, { flex: 1 , fontFamily: 'SCDream3' }]}
             placeholder="비밀번호"
@@ -58,7 +67,7 @@ return null;
           />
         </View>
         <TouchableOpacity style={[styles.nextButton]}>
-          <Text style={styles.buttonText} onPress={() => navigation.navigate('FindUserId')}>다음</Text>
+          <Text style={styles.buttonText} allowFontScaling={false} onPress={() => navigation.navigate('FindUserId')}>다음</Text>
         </TouchableOpacity>
         </ScrollView>
     </View>
@@ -66,79 +75,60 @@ return null;
 };
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: "center",
-    },
-    forgotPass: {
+  container: {
+    height: "100%",
+    backgroundColor: '#fff',
+    alignItems: "center",
+  },
+    resetPass: {
         width: "75%",
-        marginTop: "15%",
+        marginTop: 10 * vh,
     },
     Logoimg: {
-        width: 100,
-        height: 10,  
-        alignSelf: 'center',
-        marginBottom: 20,
-      },
+      alignSelf: 'center',
+      marginBottom: 2.5 * vh,
+    },
     logo: {
-        fontSize: 36,
-        fontFamily:'Lobster',
-        color: '#8236E2',
-        marginBottom: 0,
-        marginTop: "16%",
-      },
+      fontSize: 6 * vh,
+      fontFamily:'Lobster',
+      color: '#8236E2',
+      marginTop: 10 * vh,
+      
+    },
     row: {
         flexDirection: 'row',
         alignItems: 'center',
       },
-    labelText: {
+      labelText: {
         fontFamily:'SCDream3',
         fontSize: 16,
-        marginBottom:10,
-        marginRight: '7%',
+        marginRight: 3 * vw,
+        marginBottom : 1 * vh,
+        
       },
-    input: {
+      input: {
         borderWidth: 1,
         borderColor: '#ccc',
-        padding: 5,
-        marginBottom: 10,
+        padding: 0.8 * vh,
+        width:"100%",
         borderRadius: 5,
         backgroundColor: '#E6E9F3',
         color: 'black',
       },
-      button: {
-        backgroundColor: '#ffffff',
-        paddingVertical: 10,
-        paddingHorizontal: 15,
-        borderRadius: 5,
-        borderStyle:'solid',
-        borderWidth: 0.5,
-        marginBottom: 20,
-      },
-      inputTel: {
-        borderWidth: 1,
-        borderColor: '#ccc',
-        backgroundColor: '#E6E9F3',
-        padding: 5,
-        borderRadius: 5,
-        marginBottom: 20,
-        marginRight: '7%',
-      },
+      
       buttonText: {
-        fontSize: 16,
+        fontSize: 2.24 * vh,
         textAlign: 'center',
         borderStyle:'solid',
         fontFamily:'SCDream3',
       },
       nextButton: {
         backgroundColor: '#ffffff',
-        paddingVertical: 10,
-        paddingHorizontal: 20,
+        paddingVertical: 1.6 * vh,
         borderRadius: 5,
         borderStyle:'solid',
         borderWidth: 0.5,
-        marginTop: 20,
+        marginTop: 2.5 * vh,
       },
 });
 

@@ -104,7 +104,7 @@ const SignUpScreen = () => {
       
 
 
-        <View style={[styles.row, { marginBottom: "5%" }]}>
+        <View style={[styles.row, { marginBottom: 2 * vh }]}>
           <Text style={styles.labelText} allowFontScaling={false}>닉네임</Text>
           <TextInput
             style={[styles.input, {  flex : 1 ,fontFamily: 'SCDream3' }]}
@@ -125,7 +125,7 @@ const SignUpScreen = () => {
         <Text style={styles.hint} allowFontScaling={false}>아이디 중복여부 알림창</Text>
 
         <TextInput
-          style={[styles.input, { marginBottom: "5%" , fontFamily: 'SCDream3'}]}
+          style={[styles.input, { marginBottom: 2 * vh , fontFamily: 'SCDream3'}]}
           placeholder="비밀번호"
           secureTextEntry
           value={password}
@@ -219,7 +219,7 @@ const SignUpScreen = () => {
                   <View style={[{flexDirection: 'row'}]}>
                     <Text style={[styles.agreeRequired, {color: 'black'}, ]} allowFontScaling={false}>선택</Text>
                     <Text style={styles.modalText} allowFontScaling={false}>
-                      위치 정보 서비스 이용약관 동의
+                      위치 정보 이용약관 동의
                     </Text>
                   </View>
                   <TouchableOpacity onPress={handleAgreeLocation}>
@@ -244,28 +244,23 @@ const styles = StyleSheet.create({
     height: "100%",
     backgroundColor: '#fff',
     alignItems: "center",
-    borderStyle:'solid',
-    borderWidth: 1,
-    borderColor:"#ff0000"
   },
   signup: {
     width: "75%",
-    borderStyle:'solid',
-    borderWidth: 0.5,
     
   },
   logo: {
     fontSize: 6 * vh,
     fontFamily:'Lobster',
     color: '#8236E2',
-    marginTop: 4 * vh,
+    marginTop: 7 * vh,
     
   },
   label: {
     fontFamily: 'SCDream5',
     fontSize: 2.8 * vh,
     marginBottom: 2.5 * vh,
-    marginTop: 3 * vh,
+    marginTop: 1 * vh,
   },
   input: {
     borderWidth: 1,
@@ -296,7 +291,7 @@ const styles = StyleSheet.create({
   },
   Logoimg: {
     alignSelf: 'center',
-    marginBottom: 2.5 * vh,
+    marginBottom: 2 * vh,
   },
   labelText: {
     fontFamily:'SCDream3',
