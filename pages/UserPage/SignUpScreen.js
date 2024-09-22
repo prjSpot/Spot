@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { View, ScrollView, Text, TextInput, StyleSheet, TouchableOpacity, Modal } from 'react-native';
+import { View, ScrollView, Text, TextInput, StyleSheet, TouchableOpacity, Modal, Dimensions } from 'react-native';
 import {WithLocalSvg} from 'react-native-svg/css';
 import * as Font from "expo-font";
 import Logo from '../../assets/img1.svg';
 import AgreeLine from "../../assets/agreeline.svg";
 import CheckFalse from "../../assets/checkboxfalse.svg";
 import CheckTrue from "../../assets/checkboxtrue.svg";
-
 
 
 
@@ -232,6 +231,23 @@ const SignUpScreen = () => {
   );
 };
 
+// 화면 너비와 높이 가져오기
+const { width, height } = Dimensions.get('window');
+
+// 아이폰8 기준 화면크기 설정
+const baseWidth = 375;
+const baseHeight = 667;
+
+// rem 비율 계산 함수
+const scaleWidth = width / baseWidth;
+const scaleHeight = height / baseHeight;
+
+// 크기 조정 함수 (기본적으로 너비 기준, 폰트 크기는 높이 기준으로 조정함.)
+const normalize = (size, based = 'width') => {
+  const newSize = based === 'height' ? size * scaleHeight : size * scaleWidth;
+  return Math.round(newSize);
+};
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -239,129 +255,130 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   signup: {
-    width: "75%"
+    width: '75%',
   },
   logo: {
-    fontSize: 36,
-    fontFamily:'Lobster',
+    fontSize: normalize(36, 'height'),
+    fontFamily: 'Lobster',
     color: '#8236E2',
-    marginBottom: 0,
-    marginTop: "16%",
+    marginBottom: normalize(0, 'height'),
+    marginTop: normalize(16, 'height') + '%',
   },
   label: {
     fontFamily: 'SCDream5',
-    fontSize: 20,
-    marginBottom: 18,
-    marginTop: 20,
+    fontSize: normalize(20, 'height'),
+    marginBottom: normalize(18, 'height'),
+    marginTop: normalize(20, 'height'),
   },
   input: {
     borderWidth: 1,
     borderColor: '#ccc',
-    padding: 5,
-    marginBottom: 10,
-    borderRadius: 5,
+    padding: normalize(5, 'width'),
+    marginBottom: normalize(10, 'height'),
+    borderRadius: normalize(5, 'width'),
     backgroundColor: '#E6E9F3',
     color: 'black',
   },
   hint: {
-    fontSize: 11,
+    fontSize: normalize(11, 'height'),
     color: '#888',
-    marginBottom: 18,
-    fontFamily:'SCDream2'
+    marginBottom: normalize(18, 'height'),
+    fontFamily: 'SCDream2',
   },
   hintPass: {
-    fontSize: 11,
+    fontSize: normalize(11, 'height'),
     color: '#888',
-    marginBottom: 18,
-    fontFamily:'SCDream2'
+    marginBottom: normalize(18, 'height'),
+    fontFamily: 'SCDream2',
   },
   row: {
     flexDirection: 'row',
     alignItems: 'center',
   },
   Logoimg: {
-    width: 100,
-    height: 10,  
+    width: normalize(100, 'width'),
+    height: normalize(10, 'height'),
     alignSelf: 'center',
-    marginBottom: 20,
+    marginBottom: normalize(20, 'height'),
   },
   labelText: {
-    fontFamily:'SCDream3',
-    fontSize: 16,
-    marginBottom:10,
+    fontFamily: 'SCDream3',
+    fontSize: normalize(16, 'height'),
+    marginBottom: normalize(10, 'height'),
     marginRight: '7%',
   },
   button: {
     backgroundColor: '#ffffff',
-    paddingVertical: 10,
-    paddingHorizontal: 15,
-    borderRadius: 5,
-    borderStyle:'solid',
-    borderWidth: 0.5,
-    marginBottom: 20,
+    paddingVertical: normalize(10, 'height'),
+    paddingHorizontal: normalize(15, 'width'),
+    borderRadius: normalize(5, 'width'),
+    borderStyle: 'solid',
+    borderWidth: normalize(0.5, 'width'),
+    marginBottom: normalize(20, 'height'),
   },
   inputTel: {
     borderWidth: 1,
     borderColor: '#ccc',
     backgroundColor: '#E6E9F3',
-    padding: 5,
-    borderRadius: 5,
-    marginBottom: 20,
+    padding: normalize(5, 'width'),
+    borderRadius: normalize(5, 'width'),
+    marginBottom: normalize(20, 'height'),
     marginRight: '7%',
   },
   buttonText: {
-    fontSize: 16,
+    fontSize: normalize(16, 'height'),
     textAlign: 'center',
-    borderStyle:'solid',
-    fontFamily:'SCDream3',
+    borderStyle: 'solid',
+    fontFamily: 'SCDream3',
   },
   nextButton: {
     backgroundColor: '#ffffff',
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 5,
-    borderStyle:'solid',
-    borderWidth: 0.5,
-    marginTop: 20,
+    paddingVertical: normalize(10, 'height'),
+    paddingHorizontal: normalize(20, 'width'),
+    borderRadius: normalize(5, 'width'),
+    borderStyle: 'solid',
+    borderWidth: normalize(0.5, 'width'),
+    marginTop: normalize(20, 'height'),
   },
   modalContainer: {
     flex: 1,
     justifyContent: 'flex-end',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)', 
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
   modalContent: {
     backgroundColor: '#fff',
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-    paddingTop: 30,
+    borderTopLeftRadius: normalize(20, 'width'),
+    borderTopRightRadius: normalize(20, 'width'),
+    paddingTop: normalize(30, 'height'),
     height: '50%',
     alignItems: 'center',
   },
   modalTitle: {
-    fontSize: 18,
+    fontSize: normalize(18, 'height'),
     fontFamily: 'SCDream6',
     color: '#8236E2',
-    marginBottom: 20,
+    marginBottom: normalize(20, 'height'),
   },
   agreeRequired: {
-    color:'#8236E2', 
-    fontFamily: 'SCDream5', 
-    marginRight: 10, 
-    marginBottom:30,
+    color: '#8236E2',
+    fontFamily: 'SCDream5',
+    marginRight: normalize(10, 'width'),
+    marginBottom: normalize(30, 'height'),
   },
   modalText: {
-    fontSize: 16,
+    fontSize: normalize(16, 'height'),
     fontFamily: 'SCDream3',
-    marginBottom: 30,
+    marginBottom: normalize(30, 'height'),
   },
   agreeLine: {
     alignSelf: 'center',
-    marginBottom: 30,
-    width: 300,
+    marginBottom: normalize(30, 'height'),
+    width: normalize(300, 'width'),
   },
   checkAgree: {
-    marginLeft: 10,
-  }
+    marginLeft: normalize(10, 'width'),
+  },
 });
+
 
 export default SignUpScreen;
