@@ -1,43 +1,67 @@
 import React, { useState, useEffect } from 'react';
-import { View, ScrollView, Text, TextInput, StyleSheet, TouchableOpacity, Modal } from 'react-native';
-import { WithLocalSvg } from 'react-native-svg/css';
+import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
+import {WithLocalSvg} from 'react-native-svg/css';
 import * as Font from "expo-font";
-import idRadio from '../../assets/idRadio.svg'; 
-import line4 from '../../assets/line4.svg'; 
-import line5 from '../../assets/line5.svg'; 
-import ellipseSnsLogin from '../../assets/ellipseSnsLogin.svg'; 
-import eventBanner from '../../assets/eventBanner.svg'; 
-import ellipseSnsLoginCheck from '../../assets/ellipseSnsLoginCheck.svg'; 
+import idRadio from '../../assets/idRadio.svg';
+import line4 from '../../assets/line4.svg';
+import line5 from '../../assets/line5.svg';
+import ellipseSnsLogin from '../../assets/ellipseSnsLogin.svg';
+import eventBanner from '../../assets/eventBanner.svg';
+import ellipseSnsLoginCheck from '../../assets/ellipseSnsLoginCheck.svg';
 
 const LoginScreen = () => {
-  const [userId, setUserId] = useState(''); // 사용자 아이디 상태
-  const [password, setPassword] = useState(''); // 비밀번호 상태
-  const [isIdSaved, setIsIdSaved] = useState(false); // 아이디 저장 여부 상태
-
-  // 아이디 저장 버튼 클릭 시 상태 변경 함수 - 아이디저장 체크박스용
+  const [userId, setUserId] = useState('');
+  const [password, setPassword] = useState('');
+  const [isIdSaved, setIsIdSaved] = useState(false); 
+  const [fontsLoaded, setFontsLoaded] = useState(false);
+  
   const handleIdSavePress = () => {
     setIsIdSaved(!isIdSaved);
   };
+
+  const loadFonts = async () => {
+    await Font.loadAsync({
+      'Lobster': require('../../assets/fonts/Lobster-Regular.ttf'),
+      'SCDream1': require('../../assets/fonts/SCDream1.otf'),
+      'SCDream2': require('../../assets/fonts/SCDream2.otf'),
+      'SCDream3': require('../../assets/fonts/SCDream3.otf'),
+      'SCDream4': require('../../assets/fonts/SCDream4.otf'),
+      'SCDream5': require('../../assets/fonts/SCDream5.otf'),
+      'SCDream6': require('../../assets/fonts/SCDream6.otf'),
+      'SCDream7': require('../../assets/fonts/SCDream7.otf'),
+      'SCDream8': require('../../assets/fonts/SCDream8.otf'),
+      'SCDream9': require('../../assets/fonts/SCDream9.otf'),
+    });
+    setFontsLoaded(true);
+  };
+
+  useEffect(() => {
+    loadFonts();
+  }, []);
+
+  if (!fontsLoaded) {
+    return null;
+  }
 
   return (
     <View>
       <Text style={styles.logo}>Spot</Text>
       <TextInput
             style={[styles.inputId]}
-            placeholder="아이디 입력" // 아이디 입력 텍스트
+            placeholder="아이디 입력"
             value={userId}
-            onChangeText={setUserId} // 아이디 변경 시 상태 업데이트
+            onChangeText={setUserId}
           />
       <TextInput
             style={[styles.inputPass]}
-            placeholder="비밀번호 입력" // 비밀번호 입력 텍스트
+            placeholder="비밀번호 입력"
             value={password}
-            onChangeText={setPassword} // 비밀번호 변경 시 상태 업데이트
+            onChangeText={setPassword}
           />
 
-      <TouchableOpacity onPress={handleIdSavePress}>
+<TouchableOpacity onPress={handleIdSavePress}>
         <View style={styles.idSaveView}>
-          <WithLocalSvg style={styles.idRadio} asset={idRadio} /> {/* 아이디 저장 체크 박스 아이콘 */}
+          <WithLocalSvg style={styles.idRadio} asset={idRadio} />
           <Text style={styles.idSave}>아이디 저장</Text>
           {isIdSaved && (
             <WithLocalSvg style={styles.idSaveCheck} asset={ellipseSnsLoginCheck} />
@@ -45,16 +69,16 @@ const LoginScreen = () => {
         </View>
       </TouchableOpacity>
 
-      <TouchableOpacity>
-        <Text style={styles.loginBtn}>로그인</Text> 
-      </TouchableOpacity>
+        <TouchableOpacity>
+          <Text style={styles.loginBtn}>로그인</Text>
+        </TouchableOpacity>
 
-      <View style={styles.idForgotView}>
+        <View style={styles.idForgotView}>
         <TouchableOpacity>
           <Text style={styles.forgot}>아이디 찾기</Text>
         </TouchableOpacity>
 
-        <WithLocalSvg style={styles.line4} asset={line4}/>
+        <WithLocalSvg style={styles.line4} asset={line4}/> 
 
         <TouchableOpacity>
           <Text style={styles.forgot}>비밀번호 찾기</Text>
@@ -63,35 +87,35 @@ const LoginScreen = () => {
         <WithLocalSvg style={styles.line4} asset={line4}/> 
 
         <TouchableOpacity>
-          <Text style={styles.forgot}>회원 가입</Text> 
+          <Text style={styles.forgot}>회원 가입</Text>
         </TouchableOpacity>
-      </View>
+        </View>
 
-      <View style={styles.orAlign}>
+        <View style={styles.orAlign}>
         <WithLocalSvg style={styles.line5} asset={line5}/> 
         <Text style={styles.orText}>또는</Text>
         <WithLocalSvg style={styles.line6} asset={line5}/> 
-      </View>
+        </View>
 
-      <Text style={styles.snsLoginText}>SNS 로그인</Text> 
+        <Text style={styles.snsLoginText}>SNS 로그인</Text>
 
-      <View style={styles.snsAlignImg}>
-        <WithLocalSvg style={styles.ellipseSnsLogin} asset={ellipseSnsLogin}/> {/* SNS 로그인 아이콘 */}
+        <View style={styles.snsAlignImg}>
         <WithLocalSvg style={styles.ellipseSnsLogin} asset={ellipseSnsLogin}/> 
         <WithLocalSvg style={styles.ellipseSnsLogin} asset={ellipseSnsLogin}/> 
-      </View>
+        <WithLocalSvg style={styles.ellipseSnsLogin} asset={ellipseSnsLogin}/> 
+        </View>
+        <View style={styles.snsAlignText}>
+        <Text style={styles.snsLoginText2}>네이버</Text>
+        <Text style={styles.snsLoginText2}>카카오</Text>
+        <Text style={styles.snsLoginText2}>구글</Text>
+        </View>
 
-      <View style={styles.snsAlignText}>
-        <Text style={styles.snsLoginText2}>네이버</Text> 
-        <Text style={styles.snsLoginText2}>카카오</Text> 
-        <Text style={styles.snsLoginText2}>구글</Text> 
-      </View>
-
-      <WithLocalSvg style={styles.eventBanner} asset={eventBanner}/>
+        <WithLocalSvg style={styles.eventBanner} asset={eventBanner}/> 
     </View>
+
+
   );
 };
-
 const styles = StyleSheet.create({
   View: {
     margin: 0,

@@ -96,7 +96,7 @@ const SignUpScreen = () => {
       
 
 
-        <View style={[styles.row, { marginBottom: 10 }]}>
+        <View style={[styles.row]}>
           <Text style={styles.labelText}>닉네임</Text>
           <TextInput
             style={[styles.input, { flex: 1 , fontFamily: 'SCDream3' }]}
@@ -116,21 +116,25 @@ const SignUpScreen = () => {
         </View>
         <Text style={styles.hint}>아이디 중복여부 알림창</Text>
 
+        <View style={styles.row}>
         <TextInput
-          style={[styles.input, { marginBottom: 20 , fontFamily: 'SCDream3'}]}
+          style={[styles.input, { flex: 1, fontFamily: 'SCDream3'}]}
           placeholder="비밀번호"
           secureTextEntry
           value={password}
           onChangeText={setPassword}
         />
+        </View>
 
+        <View style={styles.row}>
         <TextInput
-          style={[styles.input, { fontFamily: 'SCDream3'}]}
+          style={[styles.input, { flex: 1, fontFamily: 'SCDream3'}]}
           placeholder="비밀번호 확인"
           secureTextEntry
           value={confirmPassword}
           onChangeText={setConfirmPassword}
         />
+        </View>
         <Text style={styles.hintPass}>비밀번호 일치 Label</Text>
 
         <Text style={styles.labelText}>전화번호</Text>
@@ -141,8 +145,8 @@ const SignUpScreen = () => {
             value={phoneNumber}
             onChangeText={setPhoneNumber}
           />
-          <TouchableOpacity style={styles.button}>
-            <Text style={styles.buttonText}>전송</Text>
+          <TouchableOpacity style={[styles.button]}>
+            <Text style={[styles.buttonText]}>전송</Text>
           </TouchableOpacity>
         </View>
 
@@ -160,7 +164,7 @@ const SignUpScreen = () => {
         </View>
 
         <TouchableOpacity style={[styles.nextButton]}>
-          <Text style={styles.buttonText} onPress={openModal}>다음</Text>
+          <Text style={styles.nextButtonText} onPress={openModal}>다음</Text>
         </TouchableOpacity>
       </ScrollView>
 
@@ -218,8 +222,8 @@ const SignUpScreen = () => {
                     <WithLocalSvg asset={CheckBtn(isAgreeLocation)} style={[ styles.checkAgree, {marginBottom: 30,}]}/>
                   </TouchableOpacity>
                 </View>
-                <TouchableOpacity style={[styles.nextButton, {marginTop:10}]} onPress={closeModal}>
-                  <Text style={styles.buttonText}>다음</Text>
+                <TouchableOpacity style={styles.nextButton} onPress={closeModal}>
+                  <Text style={styles.nextButtonText}>다음</Text>
                 </TouchableOpacity>
               </ScrollView>
             </View>
@@ -255,7 +259,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   signup: {
-    width: '75%',
+    width: "75%",
   },
   logo: {
     fontSize: normalize(36, 'height'),
@@ -278,6 +282,8 @@ const styles = StyleSheet.create({
     borderRadius: normalize(5, 'width'),
     backgroundColor: '#E6E9F3',
     color: 'black',
+    width: "auto",
+    height: "85%",
   },
   hint: {
     fontSize: normalize(11, 'height'),
@@ -324,6 +330,8 @@ const styles = StyleSheet.create({
     borderRadius: normalize(5, 'width'),
     marginBottom: normalize(20, 'height'),
     marginRight: '7%',
+    width: "auto",
+    height: "85%",
   },
   buttonText: {
     fontSize: normalize(16, 'height'),
