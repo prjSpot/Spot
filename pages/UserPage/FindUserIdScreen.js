@@ -53,7 +53,7 @@ return (
         <Text style={styles.labelText} allowFontScaling={false}>전화번호를 입력하세요</Text>
         <View style={styles.row}>
           <TextInput
-            style={[styles.inputTel, { flex: 1 , fontFamily: 'SCDream3'}]}
+            style={[styles.inputTel, { flex: 1 , fontFamily: 'SCDream3', height: 5.5*vh}]}
             placeholder="전화번호"
             value={phoneNumber}
             onChangeText={setPhoneNumber}
@@ -65,7 +65,7 @@ return (
         <Text style={styles.labelText} allowFontScaling={false}>인증번호</Text>
         <View style={styles.row}>
           <TextInput
-            style={[styles.inputTel, { flex: 1 , fontFamily: 'SCDream3'}]}
+            style={[styles.inputTel, { flex: 1 , fontFamily: 'SCDream3', height: 5.5*vh}]}
             placeholder="인증번호"
             value={verificationCode}
             onChangeText={setVerificationCode}
@@ -78,7 +78,7 @@ return (
         <Text style={[styles.labelText]} allowFontScaling={false}>아이디</Text>
       <View style={[styles.row ]}>
           <TextInput
-            style={[styles.input, { flex: 1 , fontFamily: 'SCDream3' }]}
+            style={[styles.input, { flex: 1 , fontFamily: 'SCDream3', height: 5.5*vh }]}
             placeholder="아이디"
             value={userId}
             onChangeText={setUserId}

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, ScrollView, Text, TextInput, StyleSheet, TouchableOpacity, Modal } from 'react-native';
+import { View, ScrollView, Text, TextInput, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
 import {WithLocalSvg} from 'react-native-svg/css';
 import * as Font from "expo-font";
 import GrayLine from '../../assets/grayLine.svg';
@@ -9,6 +9,11 @@ import ToggleOn from "../../assets/toggleOn.svg";
 import LeftArrow from "../../assets/leftArrow.svg"
 import ContactMail from "../../assets/contactMail.svg"
 import { useNavigation } from '@react-navigation/native';
+
+const { width, height } = Dimensions.get('window');
+const vw = width / 100;
+const vh = height / 100;
+
 
 const SettingScreen = () => {
 
