@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, StyleSheet, TouchableOpacity, Dimensions} from 'react-native';
 import {WithLocalSvg} from 'react-native-svg/css';
 import * as Font from "expo-font";
 import idRadio from '../../assets/idRadio.svg';
@@ -116,73 +116,98 @@ const LoginScreen = () => {
 
   );
 };
+
+
+// 화면 너비와 높이 가져오기
+const { width, height } = Dimensions.get('window');
+
+// 아이폰8 기준 화면크기 설정
+const baseWidth = 375;
+const baseHeight = 667;
+
+// rem 비율 계산 함수
+const scaleWidth = width / baseWidth;
+const scaleHeight = height / baseHeight;
+
+// 크기 조정 함수 (기본적으로 너비 기준, 폰트 크기는 높이 기준으로 조정함.)
+const normalize = (size, based = 'width') => {
+  const newSize = based === 'height' ? size * scaleHeight : size * scaleWidth;
+  return Math.round(newSize);
+};
+
+//폰트스케일링끄기
+Text.defaultProps = Text.defaultProps || {};
+Text.defaultProps.allowFontScaling = false;
+
 const styles = StyleSheet.create({
   View: {
     margin: 0,
   },
   logo: {
-    fontSize: 68,
+    fontSize: normalize(68, 'width'),
     fontFamily: 'Lobster',
     color: '#8236E2',
     marginBottom: 0,
-    marginTop: 101,
-    marginLeft: 145,
+    marginTop: normalize(101, 'height'),
+    marginLeft: normalize(130, 'width'),
   },
   inputId: {
     borderWidth: 1,
     borderColor: '#ccc',
-    padding: 5,
-    borderRadius: 5,
+    padding: normalize(5, 'width'),
+    borderRadius: normalize(5, 'width'),
     backgroundColor: '#E6E9F3',
     color: 'black',
-    marginTop: 40,
-    marginHorizontal: 58, 
+    marginTop: normalize(20, 'height'),
+    // marginBottom: normalize(20, 'height'),
+    marginHorizontal: normalize(58, 'width'), 
     fontFamily: 'SCDream3',
-    height: 40,
+    height: normalize(32, 'height'),
   },
   inputPass: {
     borderWidth: 1,
     borderColor: '#ccc',
-    padding: 5,
-    borderRadius: 5,
+    padding: normalize(5, 'width'),
+    borderRadius: normalize(5, 'width'),
     backgroundColor: '#E6E9F3',
     color: 'black',
-    marginBottom: 10,
-    marginTop: 16,
-    marginHorizontal: 58, 
+    marginBottom: normalize(10, 'height'),
+    marginTop: normalize(16, 'height'),
+    marginHorizontal: normalize(58, 'width'), 
     fontFamily: 'SCDream3',
-    height: 40,
+    height: normalize(32, 'height'),
   },
   loginBtn: {
     borderWidth: 1,
     borderColor: '#ccc',
-    padding: 5,
-    borderRadius: 5,
-    paddingTop: 10,
-    marginTop: 20, 
-    marginHorizontal: 58, 
+    alignItems: 'center',
+    padding: normalize(5, 'width'),
+    borderRadius: normalize(5, 'width'),
+    paddingTop: normalize(8, 'height'),
+    // marginTop: normalize(4, 'height'), 
+    marginHorizontal: normalize(58, 'width'), 
     color: 'black',
-    height: 40,
+    height: normalize(32, 'height'),
     textAlign: 'center',
-    fontSize: 20,
+    fontSize: normalize(20, 'width'),
     fontFamily: 'SCDream3',
   },
   idRadio: {
-    marginLeft: 58,
-    marginRight: 58,
-    marginBottom: 23,
+    marginLeft: normalize(58, 'width'),
+    marginRight: normalize(58, 'width'),
+    marginBottom: normalize(23, 'height'),
     color: '#4d4d4d',
   },
   idSave: {
     fontFamily: 'SCDream3',
-    marginLeft: -54,
+    marginLeft: normalize(-54, 'width'),
     color: '#4d4d4d',
   },
   idSaveView: {
     flexDirection: 'row',
   },
   line4: {
-    marginHorizontal: 18,
+    marginHorizontal: normalize(18, 'width'),
   },
   forgot: {
     color: '#4d4d4d',
@@ -191,35 +216,35 @@ const styles = StyleSheet.create({
   idForgotView: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 16,
+    marginTop: normalize(16, 'height'),
     padding: "auto",
     margin: "auto",
     justifyContent: 'space-between',
   },
   line5: {
-    marginHorizontal: 18,
-    marginTop: 60,
+    marginHorizontal: normalize(18, 'width'),
+    marginTop: normalize(16, 'height'),
   },
   line6: {
-    marginHorizontal: 18,
-    marginTop: 60,
+    marginHorizontal: normalize(18, 'width'),
+    marginTop: normalize(16, 'height'),
   },
   orText: {
     color: '#8236E2',
     fontFamily: 'SCDream3',
-    fontSize: 16,
-    marginTop: 60,
+    fontSize: normalize(16, 'width'),
+    marginTop: normalize(16, 'height'),
   },
   orAlign: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 20, 
+    marginTop: normalize(20, 'height'), 
   },
   snsLoginText: {
-    marginTop: 32,
+    marginTop: normalize(32, 'height'),
     fontFamily: 'SCDream3',
-    fontSize: 16,
+    fontSize: normalize(16, 'width'),
     textAlign: 'center',
   },
   snsAlignImg: {
@@ -228,16 +253,12 @@ const styles = StyleSheet.create({
     marginLeft: '22%',
     marginRight: '22%',
     justifyContent: 'space-between',
-    marginTop: 24,
+    marginTop: normalize(24, 'height'),
   },
-  // ellipseSnsLogin: {
-  //   height: 51,
-  //   width: 51,
-  // },
   snsLoginText2: {
-    marginTop: 12,
+    marginTop: normalize(12, 'height'),
     fontFamily: 'SCDream3',
-    fontSize: 12,
+    fontSize: normalize(12, 'width'),
     textAlign: 'center',
   },
   snsAlignText: {
@@ -247,15 +268,16 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   eventBanner: {
-    marginTop: 24,
+    marginTop: normalize(24, 'height'),
     alignItems: 'center',
     justifyContent: 'center',
     marginHorizontal: 'auto',
   },
   idSaveCheck: {
-    marginLeft: -79.5,
-    marginTop: 2,
+    marginLeft: normalize(-75.5, 'width'),
+    marginTop: normalize(1.5, 'height'),
   },
 });
+
 
 export default LoginScreen;
