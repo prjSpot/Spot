@@ -14,7 +14,6 @@ import CheckTrue from "../../assets/checkboxtrue.svg";
 
 const SignUpScreen = () => {
 
-  // 할 게 너무 많아요 ㅋㅋ 이게 맞나?
   // 아이디 입력할 때마다 하단 중복여부 알림창에 사용가능 or 불가능 표기
   // 비밀번호 두개 같은 지 확인 (일치 label)
   // 전화번호 전송버튼 작동 -> 랜덤 숫자 6자리 생성 후 문자 혹은 카톡 전달
@@ -84,6 +83,10 @@ const SignUpScreen = () => {
   const CheckBtn = (isChecked) => {
     return isChecked ? CheckTrue : CheckFalse;
   };
+
+  //시스템폰트 영향 끄기
+  Text.defaultProps = Text.defaultProps || {};
+  Text.defaultProps.allowFontScaling = false;
 
   return (
 
@@ -370,7 +373,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   modalTitle: {
-    fontSize: normalize(20, height),
+    fontSize: normalize(18, height),
     fontFamily: 'SCDream6',
     color: '#8236E2',
   },
@@ -378,10 +381,10 @@ const styles = StyleSheet.create({
     color:'#8236E2', 
     fontFamily: 'SCDream5', 
     marginRight: normalize(10, width), 
-    fontSize: normalize(16, height),
+    fontSize: normalize(14, height),
   },
   modalText: {
-    fontSize: normalize(18, width),
+    fontSize: normalize(16, width),
     fontFamily: 'SCDream3',
   },
   agreeLine: {
