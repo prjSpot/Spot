@@ -147,9 +147,8 @@ const styles = StyleSheet.create({
     fontSize: normalize(68, 'width'),
     fontFamily: 'Lobster',
     color: '#8236E2',
-    marginBottom: 0,
-    marginTop: normalize(101, 'height'),
-    marginLeft: normalize(130, 'width'),
+    marginTop: normalize(80, 'height'),
+    marginLeft: normalize(132, 'width'),
   },
   inputId: {
     borderWidth: 1,
@@ -189,7 +188,7 @@ const styles = StyleSheet.create({
     color: 'black',
     height: normalize(32, 'height'),
     textAlign: 'center',
-    fontSize: normalize(20, 'width'),
+    fontSize: normalize(16, 'width'),
     fontFamily: 'SCDream3',
   },
   idRadio: {
@@ -274,7 +273,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 'auto',
   },
   idSaveCheck: {
-    marginLeft: normalize(-75.5, 'width'),
+    marginLeft: normalize(-85, 'width'),
     marginTop: normalize(1.5, 'height'),
   },
 });
