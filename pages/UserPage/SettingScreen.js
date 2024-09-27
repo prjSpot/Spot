@@ -68,30 +68,30 @@ const SettingScreen = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.logo}>Spot</Text>
-      <WithLocalSvg style={styles.Logoimg} asset={GrayLine}/> 
+      <WithLocalSvg style={styles.Logoimg} asset={GrayLine} width={normalize(350,width)}/> 
 
-      <View style={[{alignItems: "center"}]}>
-        <Text style={[styles.label, {marginBottom: 18}]}>환경설정</Text>
+      <View>
+        <Text style={[styles.label, styles.sectionFirstBottomMargin]}>환경설정</Text>
       </View>
-      <View style={[styles.row, { marginBottom: 16, justifyContent: 'space-between', width: '80%'}]}>
+      <View style={[styles.row, styles.nickNameSetting]}>
         <Text style={styles.label}>{nickName}</Text>
         <TouchableOpacity style={styles.button} onPress={handleChangeNickname}>
           <Text style={styles.changeText}>변경</Text>
           <WithLocalSvg asset={LeftArrowSmall}/>
         </TouchableOpacity>
       </View>
-      <WithLocalSvg style={styles.Logoimg} asset={GrayLine}/> 
+      <WithLocalSvg style={styles.Logoimg} asset={GrayLine} width={normalize(350,width)}/> 
         
         <ScrollView style={styles.setting}>
 
         <View style={styles.section}>
           <Text style={styles.labelText}>설정</Text>
-          <View style={[styles.row, styles.buttonBox, {marginBottom: 16}]}>
-            <Text style={styles.buttonText}>알림 <Text style={[{fontFamily:'SCDream4'}]}>{notice}</Text></Text>
+          <View style={[styles.row, styles.buttonBox, styles.sectionFirstBottomMargin]}>
+            <Text style={styles.buttonText}>알림 <Text style={styles.boldText}>{notice}</Text></Text>
             <WithLocalSvg onPress={noticeSwitch} asset={notice==='ON' ? ToggleOn : ToggleOff}/>
           </View>
           <View style={[styles.row, styles.buttonBox]}>
-            <Text style={styles.buttonText}>숨기기 <Text style={[{fontFamily:'SCDream4'}]}>{hide}</Text></Text>
+            <Text style={styles.buttonText}>숨기기 <Text style={styles.boldText}>{hide}</Text></Text>
             <WithLocalSvg onPress={hideSwitch} asset={hide==='ON' ? ToggleOn : ToggleOff}/>
           </View>
         </View>
@@ -99,7 +99,7 @@ const SettingScreen = () => {
 
         <View style={styles.section}>
           <Text style={styles.labelText}>계정</Text>
-          <View style={[styles.row, styles.buttonBox, {marginBottom: 16}]}>
+          <View style={[styles.row, styles.buttonBox, styles.sectionFirstBottomMargin]}>
             <Text style={styles.buttonText}>비밀번호 재설정</Text>
             <WithLocalSvg asset={LeftArrow} onPress={handleForgotPassword}/>
           </View>
@@ -111,12 +111,12 @@ const SettingScreen = () => {
 
         <View style={styles.section}>
           <Text style={styles.labelText}>앱 정보</Text>
-          <View style={[styles.row, styles.buttonBox, {marginBottom: 16}]}>
-            <Text style={styles.buttonText}><Text style={[styles.logo, {fontSize: 16, color: 'black'}]}>Spot</Text> 버전</Text>
-            <Text style={[{fontSize: 12, fontFamily: 'SCDream3'}]}>v.1.0</Text>
+          <View style={[styles.row, styles.buttonBox, styles.sectionFirstBottomMargin]}>
+            <Text style={styles.buttonText}><Text style={[styles.blackLogo]}>Spot</Text> 버전</Text>
+            <Text style={styles.versionText}>v.1.0</Text>
           </View>
           <View style={[styles.row, styles.buttonBox]}>
-          <Text style={styles.buttonText}><Text style={[styles.logo, {fontSize: 16, color: 'black'}]}>Spot</Text> 에게 문의하기</Text>
+          <Text style={styles.buttonText}><Text style={[styles.blackLogo]}>Spot</Text> 에게 문의하기</Text>
             <WithLocalSvg asset={ContactMail}/>
           </View>
         </View>
@@ -124,6 +124,23 @@ const SettingScreen = () => {
       </ScrollView>
     </View>
   );
+};
+
+// 화면 너비와 높이 가져오기
+const { width, height } = Dimensions.get('window');
+
+// Pixel3a 기준 화면크기 설정
+const baseWidth = 412;
+const baseHeight = 832;
+
+// rem 비율 계산 함수
+const scaleWidth = width / baseWidth;
+const scaleHeight = height / baseHeight;
+
+// 크기 조정 함수 (폰트와 높이에 관한 크기는 height, 너비에 관한 크기는 width)
+const normalize = (size, based = 'width') => {
+  const newSize = based === 'height' ? size * scaleHeight : size * scaleWidth;
+  return Math.round(newSize);
 };
 
 const styles = StyleSheet.create({
@@ -136,21 +153,26 @@ const styles = StyleSheet.create({
     width: "80%",
   },
   section: {
-    marginBottom: 30,
+    marginBottom: normalize(30, height),
   },
   logo: {
-    fontSize: 36,
+    fontSize: normalize(40, height),
     fontFamily:'Lobster',
     color: '#8236E2',
-    marginBottom: 0,
-    marginTop: "16%",
+    marginTop: normalize(60, height),
+    marginBottom: normalize(1, height),
   },
   label: {
     fontFamily: 'SCDream3',
-    fontSize: 20,
+    fontSize: normalize(20, height),
+  },
+  nickNameSetting:{ 
+    marginBottom: normalize(16,height), 
+    justifyContent: 'space-between', 
+    width: '80%'
   },
   buttonBox: {
-    padding: 10,
+    padding: normalize(11, height),
     borderRadius: 10,
     backgroundColor: '#E6E9F3',
     color: 'black',
@@ -163,13 +185,13 @@ const styles = StyleSheet.create({
   },
   Logoimg: {
     alignSelf: 'center',
-    marginBottom: 20,
+    marginBottom: normalize(20, height),
+    marginTop: normalize(8, height),
   },
   labelText: {
     fontFamily:'SCDream3',
-    fontSize: 16,
-    marginBottom:10,
-    marginRight: '7%',
+    fontSize: normalize(16, height),
+    marginBottom:normalize(10, height),
   },
   button: {
     flexDirection: 'row',
@@ -177,14 +199,29 @@ const styles = StyleSheet.create({
   },
   changeText: {
     fontFamily: 'SCDream2',
-    marginRight: 10,
+    marginRight: normalize(10, height),
   },
   buttonText: {
-    fontSize: 16,
+    fontSize: normalize(16, height),
     textAlign: 'center',
     borderStyle:'solid',
     fontFamily:'SCDream3',
   },
+  blackLogo: {
+    fontSize: normalize(16, height),
+    fontFamily:'Lobster',
+    color: 'black',
+  },
+  versionText: {
+    fontSize: normalize(12,height), 
+    fontFamily: 'SCDream3'
+  },
+  sectionFirstBottomMargin: {
+    marginBottom: normalize(16, height),
+  },
+  boldText: {
+    fontFamily: 'SCDream4'
+  }
 
 });
 

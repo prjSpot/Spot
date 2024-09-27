@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, ScrollView, Text, TextInput, StyleSheet, TouchableOpacity, Modal, Dimensions } from 'react-native';
+import { View, ScrollView, Text, TextInput, StyleSheet, TouchableOpacity, Modal, Dimensions  } from 'react-native';
 import {WithLocalSvg} from 'react-native-svg/css';
 import * as Font from "expo-font";
 import Logo from '../../assets/img1.svg';
@@ -18,7 +18,6 @@ const vh = height / 100;
 
 const SignUpScreen = () => {
 
-  // 할 게 너무 많아요 ㅋㅋ 이게 맞나?
   // 아이디 입력할 때마다 하단 중복여부 알림창에 사용가능 or 불가능 표기
   // 비밀번호 두개 같은 지 확인 (일치 label)
   // 전화번호 전송버튼 작동 -> 랜덤 숫자 6자리 생성 후 문자 혹은 카톡 전달
@@ -92,12 +91,20 @@ const SignUpScreen = () => {
     return isChecked ? CheckTrue : CheckFalse;
   };
 
+  //시스템폰트 영향 끄기
+  Text.defaultProps = Text.defaultProps || {};
+  Text.defaultProps.allowFontScaling = false;
+
   return (
 
     <View style={styles.container} >
-    
-        <Text style={styles.logo} allowFontScaling={false}>Spot</Text>
-        <WithLocalSvg style={styles.Logoimg} asset={Logo}/> 
+
+      <Text style={styles.logo}>Spot</Text>
+      <WithLocalSvg 
+        asset={Logo}
+        width={normalize(44, width)}
+        height={normalize(8, height)}
+        /> 
 
       <ScrollView style={styles.signup}>
         <Text style={styles.label} allowFontScaling={false}>회원가입</Text>
@@ -125,7 +132,7 @@ const SignUpScreen = () => {
         <Text style={styles.hint} allowFontScaling={false}>아이디 중복여부 알림창</Text>
 
         <TextInput
-          style={[styles.input, { marginBottom: 2 * vh , fontFamily: 'SCDream3'}]}
+          style={[styles.input, { marginBottom: normalize(20, height), fontFamily: 'SCDream3'}]}
           placeholder="비밀번호"
           secureTextEntry
           value={password}
@@ -182,52 +189,67 @@ const SignUpScreen = () => {
         <View style={styles.modalContainer}>
           <View style={styles.modalContent}>
             <View style={[{ width: '75%'}]}>
-              <View style={[ styles.row, {justifyContent: 'space-between'} ]}>
-                <Text style={styles.modalTitle} allowFontScaling={false}>약관 전체동의</Text>
-                <TouchableOpacity onPress={handleAgreeAll}>
-                  <WithLocalSvg asset={CheckBtn(isAgreeAll)} style={[ styles.checkAgree, {marginBottom: 2.8 * vh,}]}/>
+              <View style={[ styles.row, {justifyContent: 'space-between', marginBottom: normalize(20, height)} ]}>
+                <Text style={styles.modalTitle}>약관 전체동의</Text>
+                <TouchableOpacity onPress={handleAgreeAll} >
+                  <WithLocalSvg 
+                    asset={CheckBtn(isAgreeAll)}
+                    width={normalize(24, height)}
+                    height={normalize(24, height)} 
+                  />
                 </TouchableOpacity>
               </View>
               <WithLocalSvg 
-                style={styles.agreeLine}
+                style={ styles.agreeLine }
                 asset={AgreeLine} 
+                width='100%' 
+                height= '1'
               />
               <ScrollView>
-                <View style={[ styles.row, {justifyContent: 'space-between'} ]}>
-                  <View style={[{flexDirection: 'row', alignItems: 'center'}]}>
-                    <Text style={styles.agreeRequired} allowFontScaling={false}>필수</Text>
-                    <Text style={styles.modalText} allowFontScaling={false}>
+                <View style={[ styles.row, {justifyContent: 'space-between', marginBottom: normalize(30, height)}]}>
+                  <View style={ styles.modalRow }>
+                    <Text style={styles.agreeRequired}>필수</Text>
+                    <Text style={styles.modalText}>
                       이용약관 동의
                     </Text>
                   </View>
                   <TouchableOpacity onPress={handleAgreeTerms}>
-                    <WithLocalSvg asset={CheckBtn(isAgreeTerms)} style={[ styles.checkAgree, {marginBottom: 4.2 * vh,}]}/>
+                    <WithLocalSvg 
+                      asset={CheckBtn(isAgreeTerms)} 
+                      width={normalize(24, height)}
+                      height={normalize(24, height)}/>
                   </TouchableOpacity>
                 </View>
-                <View style={[ styles.row, {justifyContent: 'space-between'} ]}>
-                  <View style={[{flexDirection: 'row'}]}>
-                    <Text style={styles.agreeRequired} allowFontScaling={false}>필수</Text>
-                    <Text style={styles.modalText} allowFontScaling={false}>
+                <View style={[ styles.row, {justifyContent: 'space-between', marginBottom: normalize(30, height)} ]}>
+                  <View style={ styles.modalRow }>
+                    <Text style={styles.agreeRequired}>필수</Text>
+                    <Text style={styles.modalText}>
                       개인정보 수집 및 이용 동의
                     </Text>
                   </View>
                   <TouchableOpacity onPress={handleAgreePrivacy}>
-                    <WithLocalSvg asset={CheckBtn(isAgreePrivacy)} style={[ styles.checkAgree, {marginBottom: 4.2 * vh,}]}/>
+                    <WithLocalSvg 
+                      asset={CheckBtn(isAgreePrivacy)} 
+                      width={normalize(24, height)}
+                      height={normalize(24, height)}/>
                   </TouchableOpacity>
                 </View>
-                <View style={[ styles.row, {justifyContent: 'space-between'} ]}>
-                  <View style={[{flexDirection: 'row'}]}>
-                    <Text style={[styles.agreeRequired, {color: 'black'}, ]} allowFontScaling={false}>선택</Text>
-                    <Text style={styles.modalText} allowFontScaling={false}>
-                      위치 정보 이용약관 동의
+                <View style={[ styles.row, {justifyContent: 'space-between', marginBottom: normalize(30, height)} ]}>
+                  <View style={ styles.modalRow }>
+                    <Text style={[styles.agreeRequired, {color: 'black'}]}>선택</Text>
+                    <Text style={styles.modalText}>
+                      위치 정보 서비스 이용약관 동의
                     </Text>
                   </View>
                   <TouchableOpacity onPress={handleAgreeLocation}>
-                    <WithLocalSvg asset={CheckBtn(isAgreeLocation)} style={[ styles.checkAgree, {marginBottom: 4.2 * vh,}]}/>
+                    <WithLocalSvg 
+                      asset={CheckBtn(isAgreeLocation)} 
+                      width={normalize(24, height)}
+                      height={normalize(24, height)}/>
                   </TouchableOpacity>
                 </View>
-                <TouchableOpacity style={[styles.nextButton, {marginTop:1.4 * vh}]} onPress={() => navigation.navigate('ForgotPass')}>
-                  <Text style={styles.buttonText} allowFontScaling={false}>다음</Text>
+                <TouchableOpacity style={[styles.nextButton, {marginTop:normalize(10, height)}]} onPress={closeModal}>
+                  <Text style={styles.buttonText}>다음</Text>
                 </TouchableOpacity>
               </ScrollView>
             </View>
@@ -237,6 +259,24 @@ const SignUpScreen = () => {
 
     </View>
   );
+};
+
+
+// 화면 너비와 높이 가져오기
+const { width, height } = Dimensions.get('window');
+
+// Pixel3a 기준 화면크기 설정
+const baseWidth = 412;
+const baseHeight = 832;
+
+// rem 비율 계산 함수
+const scaleWidth = width / baseWidth;
+const scaleHeight = height / baseHeight;
+
+// 크기 조정 함수 (폰트와 높이에 관한 크기는 height, 너비에 관한 크기는 width)
+const normalize = (size, based = 'width') => {
+  const newSize = based === 'height' ? size * scaleHeight : size * scaleWidth;
+  return Math.round(newSize);
 };
 
 const styles = StyleSheet.create({
@@ -250,91 +290,84 @@ const styles = StyleSheet.create({
     
   },
   logo: {
-    fontSize: 6 * vh,
+    fontSize: normalize(40, height),
     fontFamily:'Lobster',
     color: '#8236E2',
-    marginTop: 10 * vh,
-    
+    marginBottom: 0,
+    marginTop: normalize(60, height),
   },
+
   label: {
     fontFamily: 'SCDream5',
-    fontSize: 2.8 * vh,
-    marginBottom: 2.5 * vh,
-    marginTop: 1 * vh,
+    fontSize: normalize(24, height),
+    marginTop: normalize(20, height),
+    marginBottom: normalize(20, height),
   },
   input: {
+    fontSize: normalize(16, height),
     borderWidth: 1,
     borderColor: '#ccc',
-    padding: 0.8 * vh,
-    width:"100%",
+    padding: normalize(5, height),
+    marginBottom: normalize(11, height),
     borderRadius: 5,
     backgroundColor: '#E6E9F3',
     color: 'black',
+    height: normalize(44, height),
   },
   hint: {
-    fontSize: 1.5 * vh,
+    fontSize: normalize(12, height),
     color: '#888',
-    // 아이폰에서 예쁘게 나옴
-    marginTop: 1 * vh,
-    marginBottom: 1 * vh,
-    fontFamily:'SCDream2',
-    marginLeft: 16.5 * vw,
+    marginBottom: normalize(18, height),
+    fontFamily:'SCDream2'
   },
   hintPass: {
-    fontSize: 1.5 * vh,
+    fontSize: normalize(12, height),
     color: '#888',
-    // 아이폰에서 예쁘게 나옴
-    marginTop: 1 * vh,
-    marginBottom: 1 * vh,
-    fontFamily:'SCDream2',
-  
+    marginBottom: normalize(18, height),
+    fontFamily:'SCDream2'
   },
   row: {
     flexDirection: 'row',
     alignItems: 'center',
   },
-  Logoimg: {
-    alignSelf: 'center',
-    marginBottom: 2 * vh,
-  },
   labelText: {
     fontFamily:'SCDream3',
-    fontSize: 16,
-    marginRight: 3 * vw,
+    fontSize: normalize(18, height),
+    marginBottom:normalize(5, height),
+    marginRight: normalize(18, height),
   },
   button: {
     backgroundColor: '#ffffff',
-    paddingVertical: 1.6 * vh,
-    paddingHorizontal: 3.5 * vw, 
+    paddingVertical: normalize(10, height),
+    paddingHorizontal: normalize(12, height),
     borderRadius: 5,
     borderStyle:'solid',
     borderWidth: 0.5,
-    marginBottom: 2.5 * vh,
-    marginTop:1.8 * vh,
+    marginBottom: normalize(20, height),
   },
   inputTel: {
     borderWidth: 1,
     borderColor: '#ccc',
     backgroundColor: '#E6E9F3',
-    padding: 0.8 * vh,
+    padding: normalize(5, height),
     borderRadius: 5,
-    marginBottom: 2.5 * vh,
-    marginRight: 3.5 * vw,
-    marginTop: 1.7 * vh,
+    marginBottom: normalize(18, height),
+    marginRight: normalize(18, height),
+    height: normalize(44, height),
   },
   buttonText: {
-    fontSize: 2.24 * vh,
+    fontSize: normalize(18, height),
     textAlign: 'center',
     borderStyle:'solid',
     fontFamily:'SCDream3',
   },
   nextButton: {
     backgroundColor: '#ffffff',
-    paddingVertical: 1.6 * vh,
+    paddingVertical: normalize(10, height),
     borderRadius: 5,
     borderStyle:'solid',
     borderWidth: 0.5,
-    marginTop: 2.5 * vh,
+    marginTop: normalize(18, height),
   },
   modalContainer: {
     flex: 1,
@@ -345,35 +378,32 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
-    paddingTop: 4.2 * vh,
+    paddingTop: normalize(32, height),
     height: '50%',
     alignItems: 'center',
   },
   modalTitle: {
-    fontSize: 2.52 * vh,
+    fontSize: normalize(18, height),
     fontFamily: 'SCDream6',
     color: '#8236E2',
-    marginBottom: 2.8 * vh,
   },
   agreeRequired: {
     color:'#8236E2', 
     fontFamily: 'SCDream5', 
-    marginRight: 2.8 * vw, 
-    marginBottom: 4.2 * vh,
+    marginRight: normalize(10, width), 
+    fontSize: normalize(14, height),
   },
   modalText: {
-    fontSize: 2 * vh,
+    fontSize: normalize(16, width),
     fontFamily: 'SCDream3',
-    marginBottom: 4.2 * vh,
   },
   agreeLine: {
-    alignSelf: 'center',
-    marginBottom: 4.2 * vh,
-    width: 300,
+    marginBottom: normalize(32, height),
   },
-  checkAgree: {
-    marginLeft: 3.57 * vw,
-  }
+  modalRow: {
+    flexDirection: 'row',
+    alignItems: 'center', 
+  },
 });
 
 export default SignUpScreen;
