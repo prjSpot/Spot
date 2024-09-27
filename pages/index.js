@@ -1,4 +1,4 @@
-import { ScrollView, Text, Pressable } from 'react-native';
+import { ScrollView, Text, Pressable, TextInput } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 
@@ -35,5 +35,15 @@ const Index = () => {
         </ScrollView>
     );
   };
+
+  // 아이폰 환경설정에서 텍스트 크기 조절해도 동일하게 되도록
+  Text.defaultProps = Text.defaultProps || {};
+  // allowFontScaling이 폰트 사이즈를 그대로 유지시키는 메서드래여
+  Text.defaultProps.allowFontScaling = false;
+  
+  TextInput.defaultProps = TextInput.defaultProps || {};
+  //바로 아래 코드는 자동완성 비활성화 코드인데 혹시 나중에 쓸지도 몰라서..
+  //TextInput.defaultProps.autoCorrect = false;
+  TextInput.defaultProps.allowFontScaling = false;
 
 export default Index;

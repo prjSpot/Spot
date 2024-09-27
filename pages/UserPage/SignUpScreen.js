@@ -6,9 +6,13 @@ import Logo from '../../assets/img1.svg';
 import AgreeLine from "../../assets/agreeline.svg";
 import CheckFalse from "../../assets/checkboxfalse.svg";
 import CheckTrue from "../../assets/checkboxtrue.svg";
+import { useNavigation } from '@react-navigation/native';
 
+const { width, height } = Dimensions.get('window');
 
-
+// vw, vh 계산 (비율로 크기 설정)
+const vw = width / 100;
+const vh = height / 100;
 
 
 
@@ -21,7 +25,10 @@ const SignUpScreen = () => {
   // 위 조건들 하나라도 만족 못하면 다음버튼 눌렀을 때 ㅁㅁ을 다시 확인해주세요
   // 조건 다 통과되면 동의 모달 창 띄우기
   // 모달 창 위에서 필수 동의 사항들 체크 되어있으면 다음 버튼 눌렀을 때 로그인 화면으로 이동
-
+  // 네비게이션 객체 가져오기
+  // 화면 크기를 가져오는 API
+  
+  const navigation = useNavigation(); 
   const [nickname, setNickname] = useState('');
   const [userId, setUserId] = useState('');
   const [password, setPassword] = useState('');
@@ -90,8 +97,8 @@ const SignUpScreen = () => {
 
   return (
 
-    <View style={styles.container}>
-    
+    <View style={styles.container} >
+
       <Text style={styles.logo}>Spot</Text>
       <WithLocalSvg 
         asset={Logo}
@@ -100,21 +107,21 @@ const SignUpScreen = () => {
         /> 
 
       <ScrollView style={styles.signup}>
-        <Text style={styles.label}>회원가입</Text>
+        <Text style={styles.label} allowFontScaling={false}>회원가입</Text>
       
 
 
-        <View style={[styles.row, { marginBottom: 10 }]}>
-          <Text style={styles.labelText}>닉네임</Text>
+        <View style={[styles.row, { marginBottom: 2 * vh }]}>
+          <Text style={styles.labelText} allowFontScaling={false}>닉네임</Text>
           <TextInput
-            style={[styles.input, { flex: 1 , fontFamily: 'SCDream3' }]}
+            style={[styles.input, {  flex : 1 ,fontFamily: 'SCDream3' }]}
             placeholder="닉네임"
             value={nickname}
             onChangeText={setNickname}
           />
         </View>
         <View style={styles.row}>
-          <Text style={styles.labelText}>아이디</Text>
+          <Text style={styles.labelText} allowFontScaling={false}>아이디</Text>
           <TextInput
             style={[styles.input, { flex: 1 ,fontFamily: 'SCDream3'}]}
             placeholder="아이디"
@@ -122,7 +129,7 @@ const SignUpScreen = () => {
             onChangeText={setUserId}
           />
         </View>
-        <Text style={styles.hint}>아이디 중복여부 알림창</Text>
+        <Text style={styles.hint} allowFontScaling={false}>아이디 중복여부 알림창</Text>
 
         <TextInput
           style={[styles.input, { marginBottom: normalize(20, height), fontFamily: 'SCDream3'}]}
@@ -139,9 +146,9 @@ const SignUpScreen = () => {
           value={confirmPassword}
           onChangeText={setConfirmPassword}
         />
-        <Text style={styles.hintPass}>비밀번호 일치 Label</Text>
+        <Text style={styles.hintPass} allowFontScaling={false}>비밀번호 일치 Label</Text>
 
-        <Text style={styles.labelText}>전화번호</Text>
+        <Text style={styles.labelText} allowFontScaling={false}>전화번호</Text>
         <View style={styles.row}>
           <TextInput
             style={[styles.inputTel, { flex: 1 , fontFamily: 'SCDream3'}]}
@@ -154,7 +161,7 @@ const SignUpScreen = () => {
           </TouchableOpacity>
         </View>
 
-        <Text style={styles.labelText}>인증번호</Text>
+        <Text style={styles.labelText} allowFontScaling={false}>인증번호</Text>
         <View style={styles.row}>
           <TextInput
             style={[styles.inputTel, { flex: 1 , fontFamily: 'SCDream3'}]}
@@ -274,12 +281,13 @@ const normalize = (size, based = 'width') => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    height: "100%",
     backgroundColor: '#fff',
     alignItems: "center",
   },
   signup: {
-    width: "75%"
+    width: "75%",
+    
   },
   logo: {
     fontSize: normalize(40, height),
