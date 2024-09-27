@@ -159,6 +159,7 @@ const styles = StyleSheet.create({
   Logoimg: {
     alignSelf: 'center',
     marginBottom: 20,
+    marginTop: 8,
   },
   labelText: {
     fontFamily:'SCDream3',
