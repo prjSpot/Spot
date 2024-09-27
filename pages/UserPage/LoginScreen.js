@@ -2,18 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity, Dimensions, ScrollView } from 'react-native';
 import {WithLocalSvg} from 'react-native-svg/css';
 import * as Font from "expo-font";
-import idRadio from '../../assets/idRadio.svg';
 import line4 from '../../assets/line4.svg';
 import line5 from '../../assets/line5-1.svg';
 import ellipseSnsLogin from '../../assets/ellipseSnsLogin.svg';
 import eventBanner from '../../assets/eventBanner.svg';
-import ellipseSnsLoginCheck from '../../assets/ellipseSnsLoginCheck.svg';
 
 const LoginScreen = () => {
   const [userId, setUserId] = useState('');
   const [password, setPassword] = useState('');
-  const [isIdSaved, setIsIdSaved] = useState(false); 
   const [fontsLoaded, setFontsLoaded] = useState(false);
+  const [isIdSaved, setIsIdSaved] = useState(false);
   
   const handleIdSavePress = () => {
     setIsIdSaved(!isIdSaved);
@@ -65,21 +63,8 @@ const LoginScreen = () => {
 
         <TouchableOpacity onPress={handleIdSavePress}>
           <View style={styles.idSaveView}>
-            <View style={styles.radioWrapper}>
-              <WithLocalSvg 
-                style={styles.idRadio} 
-                asset={idRadio} 
-                width={normalize(16, width)}
-                height={normalize(16, height)} 
-              />
-              {isIdSaved && (
-                <WithLocalSvg style={styles.idSaveCheck} 
-                  asset={ellipseSnsLoginCheck} 
-                  width={normalize(12, width)}
-                  height={normalize(12, height)} 
-                />
-              )}
-            </View>
+          <View style={[styles.radioCircle, isIdSaved && styles.radioSelected]}>
+          </View>  
             <Text style={styles.idSave}>아이디 저장</Text>
           </View>
         </TouchableOpacity>
@@ -209,24 +194,29 @@ const styles = StyleSheet.create({
     fontSize: normalize(20, height),
     fontFamily: 'SCDream3',
   },
-  radioWrapper: {
-    position: 'relative', 
-    width: normalize(16, width), 
-    height: normalize(16, height), 
-    marginRight : normalize(8, width),
+  radioCircle: {
+    height: normalize(16, height),
+    width: normalize(16, height),
+    borderRadius: normalize(16, height),
+    borderWidth: 1.5,
+    borderColor: '#D9D9D9',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: normalize(8, height),
   },
-  idSaveCheck: {
-    position: 'absolute', 
-    top: '15%',
-    left: '15%',
+  radioSelected: {
+    borderColor: '#D9D9D9',
+    backgroundColor: '#8236E2',
   },
   idSave: {
+    fontSize: normalize(16, height),
     fontFamily: 'SCDream3',
     color: '#4d4d4d',
   },
   idSaveView: {
     flexDirection: 'row',
     marginLeft: normalize(20, width), 
+    alignItems: 'center',
   },
   line4: {
     marginHorizontal: normalize(16, width),
