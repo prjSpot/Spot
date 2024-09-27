@@ -304,6 +304,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     backgroundColor: '#E6E9F3',
     color: 'black',
+    height: normalize(44, height),
   },
   hint: {
     fontSize: normalize(12, height),
@@ -344,6 +345,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginBottom: normalize(18, height),
     marginRight: normalize(18, height),
+    height: normalize(44, height),
   },
   buttonText: {
     fontSize: normalize(18, height),
