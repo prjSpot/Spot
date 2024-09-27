@@ -8,13 +8,6 @@ import CheckFalse from "../../assets/checkboxfalse.svg";
 import CheckTrue from "../../assets/checkboxtrue.svg";
 import { useNavigation } from '@react-navigation/native';
 
-const { width, height } = Dimensions.get('window');
-
-// vw, vh 계산 (비율로 크기 설정)
-const vw = width / 100;
-const vh = height / 100;
-
-
 
 const SignUpScreen = () => {
 
@@ -111,7 +104,7 @@ const SignUpScreen = () => {
       
 
 
-        <View style={[styles.row, { marginBottom: 2 * vh }]}>
+        <View style={[styles.row]}>
           <Text style={styles.labelText} allowFontScaling={false}>닉네임</Text>
           <TextInput
             style={[styles.input, {  flex : 1 ,fontFamily: 'SCDream3' }]}

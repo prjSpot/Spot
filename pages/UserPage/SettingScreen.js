@@ -10,10 +10,6 @@ import LeftArrow from "../../assets/leftArrow.svg"
 import ContactMail from "../../assets/contactMail.svg"
 import { useNavigation } from '@react-navigation/native';
 
-const { width, height } = Dimensions.get('window');
-const vw = width / 100;
-const vh = height / 100;
-
 
 const SettingScreen = () => {
 
